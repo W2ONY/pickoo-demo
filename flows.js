@@ -200,6 +200,9 @@ window.PickooFlows = function (P) {
   // closed | panel | full（full 只出现在 Chat 页）| parked（浮窗里点了商品：会话暂时收起、让位给 PDP，关 PDP 后恢复）
   var mode = "closed";
   var restoreTop = null; // parked 时记下的会话滚动位置
+  var chatFrom = "explore"; // 进 Chat 页之前所在的页面，缩小 / 关闭时回到这里
+  var lastRoute = P.route();
+  var panelMem = {}; // 各页面离开时浮窗是否开着（Explore ↔ Auto-task / Favorites 来回切换时恢复）
   var afterLeave = null; // 离开 Chat 页后会话的去向：panel = 右侧浮窗，closed = 收到底部输入框
   var el = $("#agent");
   function isOpen() {
@@ -255,7 +258,7 @@ window.PickooFlows = function (P) {
           function () {
             if (P.route() === "chat") {
               afterLeave = "panel";
-              P.go("explore");
+              P.go(chatFrom);
             } else P.go("chat");
           },
         ),
@@ -314,7 +317,7 @@ window.PickooFlows = function (P) {
     closePdp();
     if (P.route() === "chat") {
       afterLeave = "closed";
-      P.go("explore");
+      P.go(chatFrom);
       return;
     }
     setMode("closed");
@@ -821,7 +824,7 @@ window.PickooFlows = function (P) {
   function openPdp(p, m) {
     pdp.p = p;
     pdp.idx = 0;
-    pdp.mode = m === "drawer" || (isOpen() && m !== "full") ? "drawer" : "full";
+    pdp.mode = m === "full" ? "full" : "drawer";
     // 浮窗会话里点商品：会话先收起，PDP 占它的位置；全屏会话保持设计稿的叠放（2584:382002）
     if (pdp.mode === "drawer" && mode === "panel") {
       restoreTop = el._scroll ? el._scroll.scrollTop : null;
@@ -888,7 +891,7 @@ window.PickooFlows = function (P) {
             : "",
         }),
         icBtn("agent-ic", IC.shrink, "Exit full screen", function () {
-          pdp.mode = isOpen() ? "drawer" : "closed";
+          pdp.mode = "drawer";
           paintPdp();
         }),
         icBtn("agent-ic", IC.close, "Close", closePdp),
@@ -1180,7 +1183,6 @@ window.PickooFlows = function (P) {
   }
   function startFlow(fn) {
     Modal.close();
-    if (P.route() !== "explore" && P.route() !== "chat") P.go("explore");
     setTimeout(fn, 30);
   }
   function productPicker(key, preset) {
@@ -1492,8 +1494,7 @@ window.PickooFlows = function (P) {
   var Caps = {
     open: function (key, opts) {
       // 首页商品卡上的 Auto-task 标签：直接在会话里出降价提醒表单
-      if (key === "track" && opts && opts.product && P.route() === "explore")
-        return trackForm(opts.product);
+      if (key === "track" && opts && opts.product) return trackForm(opts.product);
       openCap(key, opts);
     },
   };
@@ -1757,7 +1758,7 @@ window.PickooFlows = function (P) {
         {
           class: "task-p",
           onclick: function () {
-            openPdp(taskProduct(t), "full");
+            openPdp(taskProduct(t), "drawer");
           },
         },
         [
@@ -1919,7 +1920,7 @@ window.PickooFlows = function (P) {
       } else {
         var g = h("div", { class: "fav-grid" });
         list.forEach(function (p) {
-          g.appendChild(P.productCard(p, { pdpMode: "full" }));
+          g.appendChild(P.productCard(p, { pdpMode: "drawer" }));
         });
         page.appendChild(g);
       }
@@ -2167,14 +2168,26 @@ window.PickooFlows = function (P) {
   P.mod("Login", Login);
   P.mod("UserMenu", UserMenu);
   // 离开 Chat 页：全屏会话收回右侧浮窗（有内容时）；换页时关 PDP
+  // 切页：PDP 关掉；浮窗按页面记忆——离开时记下开关，回来时恢复（新页面默认关着）；
+  // Chat 页 = 全屏会话，从 Chat 页离开时按缩小 / 关闭按钮的去向，否则按目标页的记忆
   window.addEventListener("hashchange", function () {
-    if (P.route() === "chat") mode = "full";
-    else if (mode === "full")
-      // 缩小 / 关闭按钮已指定去向；从顶部导航离开时，有对话就收进浮窗
-      mode = afterLeave || (thread.length ? "panel" : "closed");
+    var to = P.route(),
+      from = lastRoute;
+    lastRoute = to;
+    if (pdp.mode !== "closed") {
+      pdp.mode = "closed";
+      paintPdp();
+    }
+    if (mode === "parked") mode = "panel";
+    if (from !== "chat" && from !== to) panelMem[from] = mode === "panel" ? "panel" : "closed";
+    if (to === "chat") {
+      if (from !== "chat") chatFrom = from;
+      mode = "full";
+    } else if (from === "chat") mode = afterLeave || panelMem[to] || "closed";
+    else if (from !== to) mode = panelMem[to] || "closed";
+    if (to !== "chat" && mode === "panel") panelMem[to] = "panel";
     afterLeave = null;
     paintShell();
-    if (pdp.mode !== "closed") closePdp();
     P.renderDock();
   });
 };

@@ -3709,3 +3709,24 @@ img {
     transform 0.32s cubic-bezier(0.22, 0.8, 0.24, 1),
     opacity 0.25s ease;
 }
+
+/* 清单卡缩略图可点（打开该商品 PDP） */
+.wl-thumb {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.wl-thumb:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+/* 全屏 PDP 底栏：和右栏信息列对齐，右侧留出页面边距，Ask Pickoo 不再贴边 */
+.pdp.is-full .pdp-foot {
+  left: 0;
+  right: 0;
+  width: auto;
+  transform: none;
+  padding: 24px max(40px, calc((100% - 1280px) / 2)) 28px calc(max(40px, calc((100% - 1280px) / 2)) + 720px);
+}
+.pdp-foot .buy-row {
+  padding-right: 4px;
+}

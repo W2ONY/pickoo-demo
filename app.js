@@ -532,17 +532,40 @@
     );
     c.appendChild(t);
     var th = h("span", { class: "wl-thumbs" });
+    // 点下面的小图：打开该商品的 PDP；点卡片其他地方：进会话看整张清单
     (L.thumbs || []).slice(0, 3).forEach(function (t) {
       var src = typeof t === "string" ? t : t.src;
-      th.appendChild(
-        h("span", { style: "background:" + (t.bg || "transparent") }, [
-          img(src),
-        ]),
-      );
+      var info = THUMB_INFO[src.split("/").pop()];
+      var s = h("span", { class: "wl-thumb", style: "background:" + (t.bg || "transparent") }, [img(src)]);
+      if (info) {
+        s.setAttribute("role", "button");
+        s.setAttribute("aria-label", info.name);
+        s.addEventListener("click", function (e) {
+          e.stopPropagation();
+          Pdp.open(Object.assign({ id: slug(info.name), image: src, imgBg: "#f8f8f8" }, info), "drawer");
+        });
+      }
+      th.appendChild(s);
     });
     c.appendChild(th);
     return c;
   }
+
+  // 清单卡缩略图对应的商品（设计稿只有图片，名称 / 价格按图片拟定）
+  var THUMB_INFO = {
+    "wl-t01.png": { name: "Ivory Leather Hobo Shoulder Bag", price: "$268.00", was: "$420.00", store: "From Nordstrom", benefit: "Everyday carry, elevated" },
+    "wl-t02.png": { name: "Slim Leather Bifold Wallet", price: "$58.00", was: "$95.00", store: "From Nordstrom", benefit: "Holds the essentials, nothing more" },
+    "wl-t03.png": { name: "Tortoise Aviator Sunglasses", price: "$84.00", was: "$140.00", store: "From Nordstrom", benefit: "Classic shape, lighter price" },
+    "wl-t04.png": { name: "Olive Velvet Low Sofa", price: "$489.00", was: "$899.00", store: "From Wayfair", benefit: "Deep seats for slow evenings" },
+    "wl-t05.png": { name: "Rustic Wood & Iron Coffee Table", price: "$139.97", was: "$259.00", store: "From Walmart", storeIcon: "assets/img/store-walmart.png", benefit: "Two tiers of storage" },
+    "wl-t06.png": { name: "Ribbed Swivel Accent Chair", price: "$101.00", was: "$189.00", store: "From Target", benefit: "Soft texture, small footprint" },
+    "wl-t07.png": { name: "All-Season Down-Alternative Comforter", price: "$119.99", was: "$199.00", store: "From Target", benefit: "Light but warm all year" },
+    "wl-t08.png": { name: "Contour Side-Sleeper Pillow", price: "$59.00", was: "$89.00", store: "From Amazon", benefit: "Keeps your neck aligned" },
+    "wl-t09.png": { name: "Washed Linen Throw, Olive", price: "$78.00", was: "$120.00", store: "From Quince", benefit: "Softens with every wash" },
+    "wl-t10.png": { name: "Wool Peacoat with Plaid Lining", price: "$398.00", was: "$720.00", store: "From Nordstrom", benefit: "Warm enough for the cold snap" },
+    "wl-t11.png": { name: "Full-Grain Leather Weekender", price: "$455.00", was: "$880.00", store: "From Etsy", benefit: "Carry-on sized, built to last" },
+    "wl-t12.png": { name: "Leather Dopp Kit", price: "$157.00", was: "$300.00", store: "From Etsy", benefit: "Travel-ready, monogram optional" },
+  };
 
   // Deals for You：Default / Discount 排序 + 分类筛选
   function dealsSection(H) {
