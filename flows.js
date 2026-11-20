@@ -1954,13 +1954,13 @@ window.PickooFlows = function (P) {
       list.appendChild(
         item(IC.mLock, "Web Permissions", function () {
           UserMenu.close();
-          toast("Pickoo can read prices on store pages you visit");
+          permissionsDialog();
         }),
       );
       list.appendChild(
         item(IC.mGlobe, "Language", function () {
           UserMenu.close();
-          toast("Language: English (US)");
+          languageDialog();
         }),
       );
       list.appendChild(
@@ -2000,6 +2000,65 @@ window.PickooFlows = function (P) {
   document.addEventListener("click", function (e) {
     if (menuEl && !menuEl.contains(e.target)) UserMenu.close();
   });
+  /* 设置弹窗（Figma 2408:156892 Web Permissions / 2408:157078 Language）：600×640 灰底，内部白色分组列表 */
+  var SET_ICONS = {
+    location:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+    mic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>',
+    bell: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17V11a6 6 0 0 1 12 0v6M4 17h16M10 20.5h4"/></svg>',
+    chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg>',
+  };
+  function settingsDialog(title, body) {
+    Modal.open(h("div", { class: "modal set-modal" }, [Modal.head(title), body]));
+  }
+  // 权限状态记在 localStorage；点一行在 Allowed / Blocked 间切换（演示用，不调浏览器权限）
+  var PERMS = [
+    ["location", "Location"],
+    ["mic", "Microphone"],
+    ["bell", "Notification"],
+  ];
+  function permissionsDialog() {
+    var state = P.load("perms", {});
+    var list = h("div", { class: "set-list" });
+    PERMS.forEach(function (pm) {
+      var on = state[pm[0]] !== false;
+      var val = h("span", { class: "set-val", text: on ? "Allowed" : "Blocked" });
+      var row = h("button", { class: "set-row has-icon" }, [
+        h("span", { class: "set-ic", html: SET_ICONS[pm[0]] }),
+        h("span", { class: "set-label", text: pm[1] }),
+        val,
+        h("span", { class: "set-chev", html: SET_ICONS.chev }),
+      ]);
+      row.onclick = function () {
+        on = !on;
+        state[pm[0]] = on;
+        P.save("perms", state);
+        val.textContent = on ? "Allowed" : "Blocked";
+        toast(pm[1] + (on ? " allowed" : " blocked"));
+      };
+      list.appendChild(row);
+    });
+    settingsDialog("Web Permissions", list);
+  }
+  // 设计稿列表里 "Ing" 含义不明、"Espariol" 是笔误：去掉前者，其余按正确拼写
+  var LANGS = ["English", "Bahasa Indonesia", "日本語", "Português", "Tiếng Việt", "Español (Argentina)", "Español (México)", "Español", "Français", "Deutsch"];
+  function languageDialog() {
+    var cur = P.load("lang", "English");
+    var list = h("div", { class: "set-list" });
+    LANGS.forEach(function (l) {
+      var row = h("button", { class: "set-row" + (l === cur ? " is-on" : "") }, [h("span", { class: "set-label", text: l }), h("span", { class: "set-check", html: SET_ICONS.check })]);
+      row.onclick = function () {
+        P.save("lang", l);
+        list.querySelectorAll(".set-row").forEach(function (r) {
+          r.classList.toggle("is-on", r === row);
+        });
+        toast("Language set to " + l + (l === "English" ? "" : " (demo stays in English)"));
+      };
+      list.appendChild(row);
+    });
+    settingsDialog("Language", list);
+  }
   function feedback() {
     var ta = h("textarea", {
       class: "fb-text",
