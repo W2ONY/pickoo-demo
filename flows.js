@@ -197,7 +197,9 @@ window.PickooFlows = function (P) {
 
   /* ================= Agent 会话 ================= */
   var thread = [];
-  var mode = "closed"; // closed | panel | full（full 只出现在 Chat 页）
+  // closed | panel | full（full 只出现在 Chat 页）| parked（浮窗里点了商品：会话暂时收起、让位给 PDP，关 PDP 后恢复）
+  var mode = "closed";
+  var restoreTop = null; // parked 时记下的会话滚动位置
   var afterLeave = null; // 离开 Chat 页后会话的去向：panel = 右侧浮窗，closed = 收到底部输入框
   var el = $("#agent");
   function isOpen() {
@@ -233,7 +235,7 @@ window.PickooFlows = function (P) {
   function paintShell() {
     el.classList.toggle("is-full", mode === "full");
     el.classList.toggle("chat-page", P.route() === "chat");
-    if (mode === "closed") {
+    if (mode === "closed" || mode === "parked") {
       el._th = el._scroll = null;
       reveal(el, false);
       return;
@@ -278,7 +280,14 @@ window.PickooFlows = function (P) {
     );
     el._th = th;
     el._scroll = scroll;
-    bottom();
+    // 从 PDP 回来：回到离开时的滚动位置；其他情况贴底
+    if (restoreTop != null) {
+      var top = restoreTop;
+      restoreTop = null;
+      requestAnimationFrame(function () {
+        scroll.scrollTop = top;
+      });
+    } else bottom();
   }
   // 设计稿的问候语沿用了别的产品文案（视频 / 文档创作），这里换成购物向，结构不变
   function greeting() {
@@ -342,6 +351,7 @@ window.PickooFlows = function (P) {
     );
   }
   function ensureOpen() {
+    if (mode === "parked") closePdp();
     if (mode === "closed") setMode(P.route() === "chat" ? "full" : "panel");
     else if (!el._th) paintShell();
   }
@@ -812,11 +822,22 @@ window.PickooFlows = function (P) {
     pdp.p = p;
     pdp.idx = 0;
     pdp.mode = m === "drawer" || (isOpen() && m !== "full") ? "drawer" : "full";
+    // 浮窗会话里点商品：会话先收起，PDP 占它的位置；全屏会话保持设计稿的叠放（2584:382002）
+    if (pdp.mode === "drawer" && mode === "panel") {
+      restoreTop = el._scroll ? el._scroll.scrollTop : null;
+      mode = "parked";
+      paintShell();
+    }
     paintPdp();
   }
   function closePdp() {
     pdp.mode = "closed";
     paintPdp();
+    if (mode === "parked") {
+      mode = "panel";
+      paintShell();
+      P.renderDock();
+    }
   }
   function variantOf(p) {
     var m = /(?:\s[-–]\s|,\s)([A-Za-z\/ ]{3,16})$/.exec(p.name);
@@ -831,10 +852,6 @@ window.PickooFlows = function (P) {
     reveal(pdpEl, true);
     pdpEl.classList.toggle("is-full", pdp.mode === "full");
     // 会话是右侧浮窗时，PDP 抽屉开在浮窗左边，不盖住对话；会话全屏时叠在右侧（2584:382002）
-    pdpEl.style.right =
-      pdp.mode === "drawer" && mode === "panel" && window.innerWidth > 1240
-        ? "676px"
-        : "";
     if (pdp.mode === "closed" || !pdp.p) return;
     var p = pdp.p;
     var full = pdp.mode === "full";
@@ -1045,19 +1062,14 @@ window.PickooFlows = function (P) {
       [
         "Track price",
         function () {
-          if (!isOpen()) setMode("panel");
-          pdp.mode = "drawer";
-          paintPdp();
+          closePdp();
           trackForm(p);
         },
       ],
       [
         "Is this a good price?",
         function () {
-          if (full) {
-            pdp.mode = "drawer";
-            paintPdp();
-          }
+          closePdp();
           ask("Is " + money(p.price) + " a good price for " + p.name + "?");
         },
       ],
@@ -1092,10 +1104,7 @@ window.PickooFlows = function (P) {
           {
             class: "ask-p",
             onclick: function () {
-              if (full) {
-                pdp.mode = "drawer";
-                paintPdp();
-              }
+              closePdp();
               ensureOpen();
               refChip(p);
               ask("Tell me more about this one");
