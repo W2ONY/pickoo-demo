@@ -715,18 +715,23 @@
     box.input = input;
     return box;
   }
+  // 底部输入框只建一次，进出 Chat 页 / 开关会话时切 is-away，滑入滑出有过渡
+  var dockEl = null;
   function renderDock() {
-    var slot = $("#dock-slot");
-    slot.textContent = "";
-    if (route() === "chat") return;
-    var d = h("div", { class: "dock" + (Agent.isOpen() ? " is-away" : "") }, [
-      composer({
-        placeholder: "Find a carry-on under $50",
-        useHint: true,
-        onSend: Agent.ask,
-      }),
-    ]);
-    slot.appendChild(d);
+    var away = route() === "chat" || Agent.isOpen();
+    if (!dockEl) {
+      dockEl = h("div", { class: "dock is-away" }, [
+        composer({
+          placeholder: "Find a carry-on under $50",
+          useHint: true,
+          onSend: Agent.ask,
+        }),
+      ]);
+      $("#dock-slot").appendChild(dockEl);
+      setTimeout(renderDock, 60);
+      return;
+    }
+    dockEl.classList.toggle("is-away", away);
   }
 
   /* ---------- 渲染 ---------- */
@@ -736,6 +741,10 @@
     renderHeader();
     var view = $("#view");
     view.textContent = "";
+    // 换页淡入
+    view.classList.remove("view-in");
+    void view.offsetWidth;
+    view.classList.add("view-in");
     UserMenu.close();
     if (r === "explore") renderExplore(view);
     else if (r === "auto-task") Tasks.render(view);
@@ -828,7 +837,7 @@
   function boot() {
     Promise.all(
       ["data/home.json", "data/screens.json"].map(function (u) {
-        return fetch(u)
+        return fetch(u + (window.PV ? "?v=" + window.PV : ""))
           .then(function (r) {
             return r.ok ? r.json() : null;
           })

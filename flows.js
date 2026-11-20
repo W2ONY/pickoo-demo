@@ -197,18 +197,50 @@ window.PickooFlows = function (P) {
 
   /* ================= Agent 会话 ================= */
   var thread = [];
-  var mode = "closed"; // closed | panel | full
+  var mode = "closed"; // closed | panel | full（full 只出现在 Chat 页）
+  var afterLeave = null; // 离开 Chat 页后会话的去向：panel = 右侧浮窗，closed = 收到底部输入框
   var el = $("#agent");
   function isOpen() {
     return mode !== "closed";
   }
+  // 显隐都带过渡：关闭 = 先淡出再隐藏；从隐藏到出现 = 入场动画；浮窗 ↔ 全屏 = left 过渡（同一个元素切 class）
+  function reveal(node, show) {
+    clearTimeout(node._t);
+    if (!show) {
+      if (node.hidden) return;
+      node.classList.remove("is-entering");
+      node.classList.add("is-leaving");
+      node._t = setTimeout(function () {
+        node.hidden = true;
+        node.classList.remove("is-leaving");
+        node.textContent = "";
+      }, 240);
+      return false;
+    }
+    var wasHidden = node.hidden || node.classList.contains("is-leaving");
+    node.classList.remove("is-leaving");
+    node.hidden = false;
+    if (wasHidden) {
+      node.classList.remove("is-entering");
+      void node.offsetWidth;
+      node.classList.add("is-entering");
+      node._t = setTimeout(function () {
+        node.classList.remove("is-entering");
+      }, 420);
+    }
+    return true;
+  }
   function paintShell() {
-    el.textContent = "";
-    el._th = el._scroll = null;
-    el.hidden = mode === "closed";
     el.classList.toggle("is-full", mode === "full");
     el.classList.toggle("chat-page", P.route() === "chat");
-    if (mode === "closed") return;
+    if (mode === "closed") {
+      el._th = el._scroll = null;
+      reveal(el, false);
+      return;
+    }
+    el.textContent = "";
+    el._th = el._scroll = null;
+    reveal(el, true);
     el.appendChild(
       h("div", { class: "agent-head" }, [
         img(IC.agentLogo, { loading: "eager" }),
@@ -220,11 +252,9 @@ window.PickooFlows = function (P) {
           mode === "full" ? "Exit full screen" : "Full screen",
           function () {
             if (P.route() === "chat") {
-              mode = "panel";
+              afterLeave = "panel";
               P.go("explore");
-              return;
-            }
-            setMode(mode === "full" ? "panel" : "full");
+            } else P.go("chat");
           },
         ),
         icBtn("agent-ic", IC.close, "Close", closeAgent),
@@ -274,7 +304,7 @@ window.PickooFlows = function (P) {
   function closeAgent() {
     closePdp();
     if (P.route() === "chat") {
-      mode = "closed";
+      afterLeave = "closed";
       P.go("explore");
       return;
     }
@@ -793,8 +823,12 @@ window.PickooFlows = function (P) {
     return m ? m[1].trim() : "Default";
   }
   function paintPdp() {
+    if (pdp.mode === "closed" || !pdp.p) {
+      reveal(pdpEl, false);
+      return;
+    }
     pdpEl.textContent = "";
-    pdpEl.hidden = pdp.mode === "closed";
+    reveal(pdpEl, true);
     pdpEl.classList.toggle("is-full", pdp.mode === "full");
     // 会话是右侧浮窗时，PDP 抽屉开在浮窗左边，不盖住对话；会话全屏时叠在右侧（2584:382002）
     pdpEl.style.right =
@@ -2125,9 +2159,11 @@ window.PickooFlows = function (P) {
   P.mod("UserMenu", UserMenu);
   // 离开 Chat 页：全屏会话收回右侧浮窗（有内容时）；换页时关 PDP
   window.addEventListener("hashchange", function () {
-    if (P.route() !== "chat" && el.classList.contains("chat-page"))
-      mode = thread.length ? "panel" : "closed";
     if (P.route() === "chat") mode = "full";
+    else if (mode === "full")
+      // 缩小 / 关闭按钮已指定去向；从顶部导航离开时，有对话就收进浮窗
+      mode = afterLeave || (thread.length ? "panel" : "closed");
+    afterLeave = null;
     paintShell();
     if (pdp.mode !== "closed") closePdp();
     P.renderDock();
