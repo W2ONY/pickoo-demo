@@ -1,0 +1,880 @@
+{
+  "_meta": {
+    "source": "Figma 062YUT7ScWpbRunEzIxA3V frame 707:21919",
+    "imgBg": "#f8f8f8 => gray square behind img with mix-blend-mode:multiply on the img; null => img full-bleed, no bg, no blend",
+    "imgOverlay": "optional color layer above the img (rgba(0,0,0,0.03))",
+    "imgStyle": "absolute position of <img> inside the square image box (overflow hidden)",
+    "sparkleIcon": "assets/icons/sparkle.svg (16x22.4)",
+    "autoTaskIcon": "assets/icons/auto-task.svg (16x16, pill bg rgba(0,0,0,0.05), 12px text rgba(0,0,0,0.87), pad 4px 8px, top:16px right:~1.5px)",
+    "discountBadge": "bg rgba(208,36,255,0.1), color #d024ff, SF Pro Semibold 16px/16px, pad 4px 8px, radius 1000px, top:15.5px left:16px",
+    "carouselNext": "assets/icons/carousel-next.svg (48px circle, Whole List right edge)",
+    "storeIcon": "14px round logo before 'From X' when present",
+    "wholeListLayout": "A = title 36px/1.2 + useful 14px + price 24px + was 14px 40% opacity, block top 120px; B = 2-line title 41px lh, block left 57 top 137 w 309, no was price"
+  },
+  "topDeals": [
+    {
+      "id": "2446:249937",
+      "name": "Acler Blaina Draped Long-Sleeve Midi Dress",
+      "benefit": "A standout style for less",
+      "price": "$490.00",
+      "was": "$700.00",
+      "store": "From Acler",
+      "badge": "-30%",
+      "autoTask": true,
+      "img": "assets/img/p-acler-dress.png",
+      "imgStyle": "left:20.4%;top:5.83%;width:59.2%;height:88.8%",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:251925",
+      "name": "HBADA E3 Air Ergonomic Mesh Office Chair",
+      "benefit": "Workday comfort for less",
+      "price": "$385.00",
+      "was": "$550.00",
+      "store": "From HBADA",
+      "badge": "-30%",
+      "autoTask": true,
+      "img": "assets/img/p-hbada-chair.png",
+      "imgStyle": "left:20.67%;top:5.9%;width:58.65%;height:87.98%",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:252392",
+      "name": "Fellow Ode Gen 2 Precision Burr Coffee Grinder",
+      "benefit": "Better coffee for less",
+      "price": "$300.00",
+      "was": "$400.00",
+      "store": "From Fellow",
+      "badge": "-25%",
+      "autoTask": true,
+      "img": "assets/img/p-fellow-grinder.png",
+      "imgStyle": "left:10.02%;top:-0.03%;width:79.97%;height:100.06%",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:253242",
+      "name": "Fellow Stagg EKG Electric Pour-Over Kettle",
+      "benefit": "A better pour for less",
+      "price": "$140.00",
+      "was": "$200.00",
+      "store": "From Fellow",
+      "badge": "-30%",
+      "autoTask": true,
+      "img": "assets/img/p-fellow-kettle.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:253786",
+      "name": "Our Place Wonder Oven 6-in-1 Countertop Air Fryer",
+      "benefit": "Small oven, big savings",
+      "price": "$150.00",
+      "was": "$200.00",
+      "store": "From Our Place",
+      "badge": "-25%",
+      "autoTask": true,
+      "img": "assets/img/p-ourplace-oven.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:257551",
+      "name": "Dossier Ambery Sage Eau de Parfum Spray, 50ml",
+      "benefit": "Your next signature scent",
+      "price": "$35.00",
+      "was": "$50.00",
+      "store": "From Dossier",
+      "badge": "-30%",
+      "autoTask": true,
+      "img": "assets/img/p-dossier-parfum.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:259480",
+      "name": "Timex Weekender 38mm Watch with Nylon Strap",
+      "benefit": "Everyday style for less",
+      "price": "$48.00",
+      "was": "$80.00",
+      "store": "From Timex US",
+      "badge": "-40%",
+      "autoTask": true,
+      "img": "assets/img/p-timex-watch.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    }
+  ],
+  "wholeList": [
+    {
+      "id": "981:122491",
+      "context": "WORKDAY CARRY",
+      "title": "Everyday Carry Edit",
+      "usefulThings": "4 useful things",
+      "price": "$1,010.00",
+      "was": "$2,200.00",
+      "bg": "assets/img/wl-bg-carry.png",
+      "thumbs": [
+        {
+          "src": "assets/img/wl-t01.png",
+          "bg": "#ffffff"
+        },
+        {
+          "src": "assets/img/wl-t02.png",
+          "bg": null
+        },
+        {
+          "src": "assets/img/wl-t03.png",
+          "bg": null
+        }
+      ],
+      "gradient": "linear-gradient(180deg, rgba(8,6,5,0.08) 0%, rgba(8,6,5,0.42) 34%, rgba(8,6,5,0.38) 65%, rgba(8,6,5,0.22) 100%)",
+      "layout": "A",
+      "photoBorder": "1.299px solid #e3e3eb"
+    },
+    {
+      "id": "981:122507",
+      "context": "LIVING ROOM",
+      "title": "A Cozy Corner",
+      "usefulThings": "5 useful things",
+      "price": "$729.97",
+      "was": "$2,200.00",
+      "bg": "assets/img/wl-bg-cozy.png",
+      "thumbs": [
+        {
+          "src": "assets/img/wl-t04.png",
+          "bg": "#ffffff"
+        },
+        {
+          "src": "assets/img/wl-t05.png",
+          "bg": "#ffffff"
+        },
+        {
+          "src": "assets/img/wl-t06.png",
+          "bg": "#ffffff"
+        }
+      ],
+      "gradient": "linear-gradient(180deg, rgba(8,6,5,0.08) 0%, rgba(8,6,5,0.48) 34%, rgba(8,6,5,0.48) 65%, rgba(8,6,5,0.3) 100%)",
+      "layout": "A",
+      "thumbsAlign": "start",
+      "photoBorder": "1.299px solid #e3e3eb"
+    },
+    {
+      "id": "981:122523",
+      "context": "SLOW MORNINGS",
+      "title": "Sleep In Sorted",
+      "usefulThings": "4 useful things",
+      "price": "$511.99",
+      "was": "$2,200.00",
+      "bg": "assets/img/wl-bg-sleep.png",
+      "thumbs": [
+        {
+          "src": "assets/img/wl-t07.png",
+          "bg": "#ffffff"
+        },
+        {
+          "src": "assets/img/wl-t08.png",
+          "bg": "#ffffff"
+        },
+        {
+          "src": "assets/img/wl-t09.png",
+          "bg": null
+        }
+      ],
+      "gradient": "linear-gradient(180deg, rgba(8,6,5,0.12) 0%, rgba(8,6,5,0.48) 34%, rgba(8,6,5,0.48) 65%, rgba(8,6,5,0.3) 100%)",
+      "layout": "A",
+      "photoBorder": "1.299px solid #e3e3eb"
+    },
+    {
+      "id": "981:122539",
+      "context": "NEXT TRIP",
+      "title": "Everyday Carry Edit",
+      "usefulThings": "4 useful things",
+      "price": "$1,010.00",
+      "was": "$2,200.00",
+      "bg": "assets/img/wl-bg-trip.png",
+      "thumbs": [
+        {
+          "src": "assets/img/wl-t10.png",
+          "bg": "#ffffff"
+        },
+        {
+          "src": "assets/img/wl-t11.png",
+          "bg": null
+        },
+        {
+          "src": "assets/img/wl-t12.png",
+          "bg": null
+        }
+      ],
+      "gradient": "linear-gradient(180deg, rgba(8,6,5,0.08) 0%, rgba(8,6,5,0.22) 34%, rgba(8,6,5,0.2) 65%, rgba(8,6,5,0.24) 100%)",
+      "gradientBackdropBlur": "2px",
+      "photoBorder": null,
+      "layout": "A"
+    },
+    {
+      "id": "981:122555",
+      "context": "WORKDAY CARRY",
+      "title": "Everyday Carry Edit",
+      "titleLines": [
+        "Everyday",
+        "Carry Edit"
+      ],
+      "usefulThings": "4 useful things",
+      "price": "$1,010.00",
+      "was": null,
+      "bg": "assets/img/wl-bg-carry.png",
+      "thumbs": [
+        {
+          "src": "assets/img/wl-t01.png",
+          "bg": "#ffffff"
+        },
+        {
+          "src": "assets/img/wl-t02.png",
+          "bg": null
+        },
+        {
+          "src": "assets/img/wl-t03.png",
+          "bg": null
+        }
+      ],
+      "gradient": "linear-gradient(180deg, rgba(8,6,5,0.08) 0%, rgba(8,6,5,0.42) 34%, rgba(8,6,5,0.38) 65%, rgba(8,6,5,0.22) 100%)",
+      "layout": "B",
+      "photoBorder": "1.299px solid #e3e3eb"
+    },
+    {
+      "id": "981:122569",
+      "context": "SLOW MORNINGS",
+      "title": "Sleep In, Sorted",
+      "titleLines": [
+        "Sleep In,",
+        "Sorted"
+      ],
+      "usefulThings": "4 useful things",
+      "price": "$511.99",
+      "was": null,
+      "bg": "assets/img/wl-bg-sleep.png",
+      "thumbs": [
+        {
+          "src": "assets/img/wl-t07.png",
+          "bg": "#ffffff"
+        },
+        {
+          "src": "assets/img/wl-t08.png",
+          "bg": "#ffffff"
+        },
+        {
+          "src": "assets/img/wl-t09.png",
+          "bg": null
+        }
+      ],
+      "gradient": "linear-gradient(180deg, rgba(8,6,5,0.12) 0%, rgba(8,6,5,0.48) 34%, rgba(8,6,5,0.48) 65%, rgba(8,6,5,0.3) 100%)",
+      "layout": "B",
+      "photoBorder": "1.299px solid #e3e3eb"
+    }
+  ],
+  "sortPills": [
+    {
+      "id": "981:122959",
+      "label": "Default",
+      "icon": null,
+      "selected": true
+    },
+    {
+      "id": "981:122965",
+      "label": "Discount",
+      "icon": "assets/icons/sort-discount.svg",
+      "iconSize": 20,
+      "iconPosition": "after",
+      "selected": false
+    }
+  ],
+  "categories": [
+    {
+      "id": "2066:138180",
+      "label": "All finds",
+      "img": null,
+      "icon": "assets/icons/all-finds-grid.svg",
+      "circleBg": "#f6d3ff",
+      "blend": null,
+      "imgStyle": null,
+      "selected": true,
+      "iconSize": 22
+    },
+    {
+      "id": "981:122972",
+      "label": "Home",
+      "img": "assets/img/cat-home.png",
+      "icon": null,
+      "circleBg": "#eae3d5",
+      "blend": "multiply",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "selected": false
+    },
+    {
+      "id": "981:122973",
+      "label": "Kids",
+      "img": "assets/img/cat-kids.png",
+      "icon": null,
+      "circleBg": "#eab595",
+      "blend": null,
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "selected": false
+    },
+    {
+      "id": "981:122974",
+      "label": "Pets",
+      "img": "assets/img/cat-pets.png",
+      "icon": null,
+      "circleBg": "#e8e4db",
+      "blend": null,
+      "imgStyle": "left:-18.92%;top:-5.41%;width:135.14%;height:135.14%",
+      "selected": false
+    },
+    {
+      "id": "981:122975",
+      "label": "Tech",
+      "img": "assets/img/cat-tech.png",
+      "icon": null,
+      "circleBg": "#dfe4f0",
+      "blend": "multiply",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "selected": false
+    },
+    {
+      "id": "981:122976",
+      "label": "Beauty",
+      "img": "assets/img/cat-beauty.png",
+      "icon": null,
+      "circleBg": "#f2dbe3",
+      "blend": "multiply",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "selected": false
+    },
+    {
+      "id": "981:122977",
+      "label": "Fashion",
+      "img": "assets/img/cat-fashion.png",
+      "icon": null,
+      "circleBg": "#e2e5e7",
+      "blend": null,
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "selected": false
+    },
+    {
+      "id": "981:122978",
+      "label": "Kitchen",
+      "img": "assets/img/cat-kitchen.png",
+      "icon": null,
+      "circleBg": "#e8e2d7",
+      "blend": "multiply",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "selected": false
+    },
+    {
+      "id": "981:122979",
+      "label": "Travel",
+      "img": "assets/img/cat-travel.png",
+      "icon": null,
+      "circleBg": "#e3dbc9",
+      "blend": "multiply",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "selected": false
+    },
+    {
+      "id": "981:122980",
+      "label": "Accessories",
+      "img": "assets/img/cat-accessories.png",
+      "icon": null,
+      "circleBg": "#e2e5df",
+      "blend": "multiply",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "selected": false
+    }
+  ],
+  "pillStyles": {
+    "common": {
+      "height": "56px",
+      "borderRadius": "28px",
+      "font": "SF Pro Semibold 590, 18px/22px",
+      "sortPadding": "6px 16px",
+      "categoryPadding": "6px 16px 6px 6px",
+      "categoryGap": "10px",
+      "sortIconGap": "4px",
+      "groupGap": "16px",
+      "sectionGap": "24px",
+      "circle": {
+        "size": "44px",
+        "radius": "22px"
+      }
+    },
+    "selected": {
+      "background": "linear-gradient(90deg, rgba(208,36,255,0.06), rgba(208,36,255,0.06)), #ffffff",
+      "border": "1px solid #f6d3ff",
+      "color": "#d024ff",
+      "allFindsCircleBg": "#f6d3ff"
+    },
+    "unselected": {
+      "background": "#ffffff",
+      "border": "1px solid rgba(0,0,0,0.09)",
+      "color": "#242226"
+    },
+    "divider": {
+      "width": "2px",
+      "height": "32px",
+      "background": "rgba(0,0,0,0.09)"
+    },
+    "popover": {
+      "id": "2446:248649",
+      "text": "This is popover. The text is too long",
+      "font": "SF Pro Regular 400, 14px/1.4",
+      "color": "rgba(0,0,0,0.87)",
+      "background": "#ffffff",
+      "padding": "12px 16px",
+      "borderRadius": "8px",
+      "bodyRadius": "4px",
+      "shadow": "drop-shadow(0 0 8px rgba(0,0,0,0.1)) drop-shadow(0 8px 8px rgba(0,0,0,0.04))",
+      "arrow": {
+        "src": "assets/icons/popover-arrow.svg",
+        "width": "12px",
+        "height": "9px",
+        "position": "top-center, pointing up"
+      }
+    }
+  },
+  "deals": [
+    {
+      "id": "2446:272201",
+      "row": "981:122981",
+      "name": "STAUD Demy Soft Leather Everyday Shoulder Bag",
+      "benefit": "Soft curves, everyday style",
+      "price": "$243.75",
+      "was": "$325.00",
+      "store": "From STAUD",
+      "img": "assets/img/p-staud-bag.png",
+      "imgStyle": "left:10.86%;top:1.03%;width:78.28%;height:97.93%",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:272638",
+      "row": "981:122981",
+      "name": "Polaroid Sun 660 Vintage Instant Film Camera",
+      "benefit": "Make your memories tangible",
+      "price": "$128.00",
+      "was": "$160.00",
+      "store": "From Retrospekt",
+      "img": "assets/img/p-polaroid-camera.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:273142",
+      "row": "981:122981",
+      "name": "Blossom Petal-Shaped Sculptural Accent Side Table",
+      "benefit": "A softer shape for your room",
+      "price": "$196.00",
+      "was": "$280.00",
+      "store": "From Walmart",
+      "storeIcon": "assets/icons/store-walmart.png",
+      "img": "assets/img/p-blossom-table.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "imgOverlay": "rgba(0,0,0,0.03)"
+    },
+    {
+      "id": "2446:273674",
+      "row": "981:122981",
+      "name": "Native Union Rise Magnetic Wireless Charging Stand",
+      "benefit": "A tidier everyday charging spot",
+      "price": "$75.00",
+      "was": "$100.00",
+      "store": "From Native Union",
+      "img": "assets/img/p-nativeunion-stand.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:275413",
+      "row": "981:122981",
+      "name": "Dossier Ambery Sage Eau de Parfum Spray, 50ml",
+      "benefit": "Your next signature scent",
+      "price": "$35.00",
+      "was": "$50.00",
+      "store": "From Dossier",
+      "img": "assets/img/p-dossier-parfum.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:280522",
+      "row": "2446:280520",
+      "name": "HOBO Madison Soft Leather Everyday Shoulder Bag",
+      "benefit": "An effortless everyday carry",
+      "price": "$186.00",
+      "was": "$248.00",
+      "store": "From HOBO",
+      "img": "assets/img/p-hobo-bag.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:280523",
+      "row": "2446:280520",
+      "name": "Our Place Wonder Oven Compact 6-in-1 Countertop Oven",
+      "benefit": "Small oven, big savings",
+      "price": "$150.00",
+      "was": "$200.00",
+      "store": "From Our Place",
+      "img": "assets/img/p-ourplace-oven.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:280524",
+      "row": "2446:280520",
+      "name": "Julia Classic Tassel Loafers in Full-Grain Leather",
+      "benefit": "A polished step into every day",
+      "price": "$120.00",
+      "was": "$150.00",
+      "store": "From Walmart",
+      "storeIcon": "assets/icons/store-walmart.png",
+      "img": "assets/img/p-julia-loafers.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:280525",
+      "row": "2446:280520",
+      "name": "Zoe Sculptural Ceramic Vase for Fresh and Dried Stems",
+      "benefit": "A sculptural touch for your shelf",
+      "price": "$42.00",
+      "was": "$60.00",
+      "store": "From contempee",
+      "img": "assets/img/p-zoe-vase.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:280526",
+      "row": "2446:280520",
+      "name": "HBADA E3 Air Ergonomic Mesh Office Chair with Headrest",
+      "benefit": "Workday comfort for less",
+      "price": "$385.00",
+      "was": "$550.00",
+      "store": "From HBADA",
+      "img": "assets/img/p-hbada-chair.png",
+      "imgStyle": "left:20.67%;top:5.9%;width:58.65%;height:87.98%",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:280948",
+      "row": "2446:280946",
+      "name": "Fellow Stagg EKG Electric Gooseneck Pour-Over Kettle",
+      "benefit": "A better pour for less",
+      "price": "$140.00",
+      "was": "$200.00",
+      "store": "From Fellow",
+      "img": "assets/img/p-fellow-kettle.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:280949",
+      "row": "2446:280946",
+      "name": "NAADAM Essential Cashmere Quarter-Zip Sweater",
+      "benefit": "Everyday softness, refined",
+      "price": "$135.00",
+      "was": "$180.00",
+      "store": "From NAADAM",
+      "img": "assets/img/p-naadam-sweater.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:280950",
+      "row": "2446:280946",
+      "name": "Rattan Bedside Nightstands with Storage, Set of Two",
+      "benefit": "Natural texture, useful storage",
+      "price": "$117.00",
+      "was": "$180.00",
+      "store": "From Walmart",
+      "img": "assets/img/p-rattan-nightstands.png",
+      "imgStyle": "left:4.9%;top:-17.13%;width:90.21%;height:135.31%",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:280951",
+      "row": "2446:280946",
+      "name": "Nécessaire The Body Wash in Santal, Daily Cleanser",
+      "benefit": "A little ritual for your routine",
+      "price": "$24.00",
+      "was": "$30.00",
+      "store": "From Nécessaire",
+      "img": "assets/img/p-necessaire-bodywash.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:280952",
+      "row": "2446:280946",
+      "name": "Timex Weekender 38mm Watch with Changeable Strap",
+      "benefit": "Everyday style for less",
+      "price": "$48.00",
+      "was": "$80.00",
+      "store": "From Timex US",
+      "img": "assets/img/p-timex-watch.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:283646",
+      "row": "2446:283644",
+      "name": "Acler Blaina Long-Sleeve Draped Satin Midi Dress",
+      "benefit": "A standout style for less",
+      "price": "$490.00",
+      "was": "$700.00",
+      "store": "From Acler",
+      "img": "assets/img/p-acler-dress.png",
+      "imgStyle": "left:20.4%;top:5.83%;width:59.2%;height:88.8%",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:283647",
+      "row": "2446:283644",
+      "name": "Fellow Aiden Precision Automatic Drip Coffee Maker",
+      "benefit": "Your morning brew, made easy",
+      "price": "$320.00",
+      "was": "$400.00",
+      "store": "From Fellow",
+      "img": "assets/img/p-fellow-aiden.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "imgOverlay": "rgba(0,0,0,0.03)",
+      "storeIcon": null
+    },
+    {
+      "id": "2446:283648",
+      "row": "2446:283644",
+      "name": "Gretchen Pebbled Leather Everyday Crossbody Bag",
+      "benefit": "A versatile piece for every day",
+      "price": "$120.00",
+      "was": "$160.00",
+      "store": "From Walmart",
+      "storeIcon": "assets/icons/store-walmart.png",
+      "img": "assets/img/p-gretchen-crossbody.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:contain",
+      "imgBg": "#f8f8f8",
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:283649",
+      "row": "2446:283644",
+      "name": "CULTIVER Linen Duvet Cover in Soft Washed Fabric",
+      "benefit": "Soft linen for slower mornings",
+      "price": "$240.00",
+      "was": "$300.00",
+      "store": "From CULTIVER",
+      "img": "assets/img/p-cultiver-duvet.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:283650",
+      "row": "2446:283644",
+      "name": "NEST New York Bamboo Classic Scented Candle",
+      "benefit": "A fresh scent for your space",
+      "price": "$40.00",
+      "was": "$50.00",
+      "store": "From NEST New York",
+      "img": "assets/img/p-nest-candle.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:contain",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:290746",
+      "row": "2446:290744",
+      "name": "Campo Marzio Tina Structured Everyday Tote Bag",
+      "benefit": "From workdays to weekends",
+      "price": "$210.00",
+      "was": "$280.00",
+      "store": "From Campo Marzio",
+      "img": "assets/img/p-campo-tote.png",
+      "imgStyle": "left:13.65%;top:4.75%;width:72.69%;height:90.79%",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:290747",
+      "row": "2446:290744",
+      "name": "Fellow Ode Gen 2 Brew Grinder with Precision Burrs",
+      "benefit": "Better coffee for less",
+      "price": "$300.00",
+      "was": "$400.00",
+      "store": "From Fellow",
+      "img": "assets/img/p-fellow-grinder.png",
+      "imgStyle": "left:10.02%;top:-0.03%;width:79.97%;height:100.06%",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:290748",
+      "row": "2446:290744",
+      "name": "Striped Cotton Cushion Cover with Corner Tassel Trim",
+      "benefit": "Texture and color for your sofa",
+      "price": "$42.00",
+      "was": "$60.00",
+      "store": "From McGee & Co.",
+      "img": "assets/img/p-mcgee-cushion.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:290749",
+      "row": "2446:290744",
+      "name": "Nour Everyday Stoneware Dinner Plate with Glazed Finish",
+      "benefit": "A simple upgrade for your table",
+      "price": "$24.00",
+      "was": "$32.00",
+      "store": "From Shoppe Amber Interiors",
+      "img": "assets/img/p-nour-plate.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:290750",
+      "row": "2446:290744",
+      "name": "Audrey Leather Crossbody Bag with Adjustable Strap",
+      "benefit": "Easy to wear, easy to love",
+      "price": "$96.00",
+      "was": "$120.00",
+      "store": "From Walmart",
+      "storeIcon": "assets/icons/store-walmart.png",
+      "img": "assets/img/p-audrey-crossbody.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:292592",
+      "row": "2446:292590",
+      "name": "Coco Knotted Leather Mini Shoulder Bag in Burgundy",
+      "benefit": "A fresh shape for your routine",
+      "price": "$105.00",
+      "was": "$150.00",
+      "store": "From Walmart",
+      "storeIcon": "assets/icons/store-walmart.png",
+      "img": "assets/img/p-coco-bag.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:292593",
+      "row": "2446:292590",
+      "name": "Abigail Pure Silk Decorative Pillow Cover for Bedroom",
+      "benefit": "An elegant accent for your bed",
+      "price": "$45.00",
+      "was": "$60.00",
+      "store": "From McGee & Co.",
+      "img": "assets/img/p-abigail-pillow.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:292594",
+      "row": "2446:292590",
+      "name": "A.P.C. Lou Printed Cotton Canvas Everyday Tote Bag",
+      "benefit": "A classic carry for every day",
+      "price": "$92.00",
+      "was": "$115.00",
+      "store": "From A.P.C.",
+      "img": "assets/img/p-apc-tote.png",
+      "imgStyle": "left:20.21%;top:12.77%;width:59.81%;height:74.7%",
+      "imgBg": "#f8f8f8",
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:292595",
+      "row": "2446:292590",
+      "name": "Fellow Carter Move Insulated Travel Coffee Mug, 12oz",
+      "benefit": "Your coffee, ready to go",
+      "price": "$30.00",
+      "was": "$40.00",
+      "store": "From Fellow",
+      "img": "assets/img/p-fellow-carter-mug.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    },
+    {
+      "id": "2446:292596",
+      "row": "2446:292590",
+      "name": "Teagan Textured Linen Decorative Cushion Cover",
+      "benefit": "A soft finish for your sofa",
+      "price": "$35.00",
+      "was": "$50.00",
+      "store": "From McGee & Co.",
+      "img": "assets/img/p-teagan-cushion.png",
+      "imgStyle": "left:0;top:0;width:100%;height:100%;object-fit:cover",
+      "imgBg": null,
+      "storeIcon": null,
+      "imgOverlay": null
+    }
+  ]
+}

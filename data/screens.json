@@ -1,0 +1,1360 @@
+{
+  "meta": {
+    "site": "Pickoo",
+    "brand": "#d024ff",
+    "frame": "1920x1080 desktop",
+    "figmaFileKey": "062YUT7ScWpbRunEzIxA3V",
+    "extracted": "2026-11-20",
+    "font": "SF Pro (use -apple-system, 'SF Pro Text', system-ui fallback); weights 400/510/590/700",
+    "tokens": {
+      "brand": "#d024ff",
+      "brandTint06": "rgba(208,36,255,0.06)",
+      "brandTint20": "rgba(208,36,255,0.2)",
+      "brandSoft": "#fbefff",
+      "userBubbleText": "#6500b8",
+      "text87": "rgba(0,0,0,0.87)",
+      "text65": "rgba(0,0,0,0.65)",
+      "text40": "rgba(0,0,0,0.4)",
+      "border09": "rgba(0,0,0,0.09)",
+      "grayBubble": "#f6f6f6",
+      "overlay": "rgba(0,0,0,0.5)",
+      "link": "#2673dd",
+      "danger": "#ee2c4a",
+      "success": "#30b566"
+    },
+    "notes": [
+      "Image paths are relative to the pickoo-demo folder.",
+      "Several .png files contain JPEG bytes (Figma originals); browsers handle this.",
+      "Layer names still reference the old brand 'Okiee' in many places."
+    ]
+  },
+  "A_capabilityModals": {
+    "_nodes": {
+      "compare": "1139:116162",
+      "compareLinkEntered": "1139:117368",
+      "track": "1139:116423",
+      "budget": "1139:116722",
+      "ideas": "1139:116940"
+    },
+    "_notes": [
+      "Modal is 1040x790 (440 left illustration + 600 right form), NOT ~650 wide. Centered on 1920x1080 at left 440 / top 145.",
+      "No box-shadow on the modal container in any of the 4 frames; overlay is a flat rgba(0,0,0,0.5) over the homepage.",
+      "Left panel PNG exports (880x1580 @2x) already include the gradient backdrop, artwork AND the headline/body copy — render copy as live text only if you crop/replace the PNG.",
+      "Compare and Track use the same right-side form ('Which product?' + link box + 'Or pick one you viewed' 2x4 grid). Track frame shows the link-entered state by default; Compare 1139:116162 shows empty state and 1139:117368 shows link-entered.",
+      "All 8 viewed tiles show the same placeholder price $299.99.",
+      "Budget and Ideas share the same 'Budget / Web dialog' layout and the same 12 category pills (Ideas reuses them under \"Who's it for?\").",
+      "Ideas occasion chips contain a duplicate 'Just because' (design copy bug) and include 'Home' which reads like a category.",
+      "Right dialog shows a decorative scrollbar thumb (8x160, #eee, radius 19px) at right:6px top:348px in Compare/Track - the grid is meant to scroll.",
+      "No selected state for category pills / budget chips / occasion chips is drawn in these frames. Figma component note for category pill: 'Selected ... uses a light violet fill'. Suggest selected = background rgba(208,36,255,0.08); border-color #d024ff.",
+      "Some c-*.png category files are actually JPEG bytes (Figma original format) saved with .png extension; browsers render them fine."
+    ],
+    "css": {
+      "overlay": "position:fixed; inset:0; background:rgba(0,0,0,0.5);",
+      "modal": "position:absolute; left:440px; top:145px; width:1040px; height:790px; display:flex; border-radius:24px; overflow:hidden; /* no shadow in design */",
+      "leftPanel": "width:440px; height:790px; border-radius:24px 0 0 24px; background-size:cover; /* use modal-*.png */",
+      "leftPanelGradients": {
+        "compare": "linear-gradient(180deg,#fff4b8 0%,#fffae4 55%,#fffef8 100%)",
+        "track": "soft blue gradient (baked into modal-track.png)",
+        "budget": "light orange/peach gradient (baked into modal-budget.png)",
+        "ideas": "light #d024ff violet gradient (baked into modal-ideas.png)"
+      },
+      "leftCopy": "position:absolute; left:40px; top:560px; width:360px; display:flex; flex-direction:column; gap:16px; text-align:center;",
+      "leftHeadline": "font:590 24px/normal 'SF Pro',system-ui; color:#000;",
+      "leftBody": "font:400 16px/1.4 'SF Pro',system-ui; color:rgba(0,0,0,0.65);",
+      "dialog": "width:600px; height:790px; background:#fff; padding:24px; display:flex; flex-direction:column; gap:24px; border-radius:0 24px 24px 0; overflow:hidden;",
+      "header": "display:flex; align-items:center; gap:16px; height:32px;",
+      "headerTitle": "flex:1; font:590 22px/1.4 'SF Pro'; letter-spacing:-0.66px; color:rgba(0,0,0,0.87);",
+      "closeIcon": "width:24px; height:24px; /* icons/x-close.svg, stroke black */",
+      "sectionLabel": "font:510 18px/1.2 'SF Pro'; color:#000; /* 'Which product?', 'What are you shopping for?', 'Your budget', 'Occasion' (line-height 22px or 1.4) */",
+      "greyCard": "background:#f6f6f6; border-radius:20px; padding:12px; /* budget/ideas card uses padding:16px; gap:24px */",
+      "linkInput": "background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:1000px; padding:8px 8px 8px 16px; display:flex; align-items:center; gap:8px; height:54px; font:400 14px/1.4 'SF Pro';",
+      "linkInputPlaceholder": "color:rgba(0,0,0,0.4);",
+      "linkInputFilled": "color:rgba(0,0,0,0.87); /* preceded by icons/link-03.svg 20x20 (stroke black 65%) */",
+      "sendBtnDisabled": "width:36px; height:36px; border-radius:50%; background:rgba(208,36,255,0.2); display:flex; align-items:center; justify-content:center; /* icons/arrow-narrow-right.svg 24px white stroke */",
+      "sendBtnEnabled": "width:36px; height:36px; border-radius:50%; background:#d024ff;",
+      "orDivider": "display:flex; align-items:center; gap:8px; /* lines: flex:1; border-top:1px dashed rgba(0,0,0,0.09) */ font:400 14px/1.4 'SF Pro'; color:rgba(0,0,0,0.4);",
+      "dropPhotoRow": "height:40px; display:flex; align-items:center; justify-content:center; gap:6px; border-radius:12px; font:400 14px/1.4 'SF Pro'; color:rgba(0,0,0,0.65); /* icon share-01.svg 16px; 'browse' color:#0968f6 */",
+      "viewedTitle": "font:400 14px/1.4 'SF Pro'; letter-spacing:-0.42px; color:rgba(0,0,0,0.5);",
+      "viewedGrid": "display:grid; grid-template-columns:repeat(4,1fr); gap:12px; /* tiles 129x203 */",
+      "viewedTile": "background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; gap:8px;",
+      "viewedTileImg": "height:127px; width:100%; object-fit:cover; border-radius:8px 8px 0 0; /* plus overlay rgba(0,0,0,0.03) */",
+      "viewedTileName": "padding:0 8px; font:400 14px/17px 'SF Pro'; color:rgba(0,0,0,0.87); height:34px; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;",
+      "viewedTilePrice": "padding:0 8px 8px; font:700 16px/20px 'SF Pro'; color:#212121; /* '$' is weight 510 */",
+      "scrollThumb": "position:absolute; right:6px; top:348px; width:8px; height:160px; background:#eee; border-radius:19px;",
+      "categoryGrid": "display:flex; flex-direction:column; gap:12px; /* rows of 3, gap 12px, pills 165/165/166 wide */",
+      "categoryPill": "width:165px; height:56px; background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:100px; padding:5px 12px 5px 5px; display:flex; align-items:center; gap:10px; font:510 14px/20px 'SF Pro'; color:rgba(0,0,0,0.87);",
+      "categoryPillImg": "width:44px; height:44px; border-radius:22px; object-fit:contain; background:#fff; mix-blend-mode:multiply; /* travel/tech/home use cover+multiply; pets is a pre-cropped circle */",
+      "categoryPillSelected_inferred": "background:rgba(208,36,255,0.08); border-color:#d024ff;",
+      "freeTextInput": "height:54px; background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:1000px; padding:12px 16px; font:400 16px/20px 'SF Pro'; color:rgba(0,0,0,0.4) /* placeholder */;",
+      "budgetChip": "flex:1; height:36px; background:#fff; border-radius:1000px; padding:4px 12px; font:400 14px/1.4 'SF Pro'; color:rgba(0,0,0,0.87); text-align:center; /* no border */",
+      "budgetChipsRow": "display:flex; gap:12px;",
+      "budgetInput": "height:54px; background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:1000px; padding:0 16px; display:flex; align-items:center; gap:4px; font:400 16px/1.4 'SF Pro'; /* '$' rgba(0,0,0,0.87), placeholder rgba(0,0,0,0.4) */",
+      "occasionChip": "height:36px; background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:1000px; padding:4px 24px; font:400 14px/1.4 'SF Pro'; color:rgba(0,0,0,0.65);",
+      "occasionWrap": "display:flex; flex-wrap:wrap; gap:12px;",
+      "primaryBtn": "height:40px; padding:10px 24px; border-radius:1000px; background:#d024ff; color:#fff; font:510 16px/1.4 'SF Pro'; align-self:flex-end;",
+      "primaryBtnDisabled": "opacity:0.38;"
+    },
+    "modals": [
+      {
+        "key": "compare",
+        "node": "1139:116162",
+        "title": "Compare Prices",
+        "illustration": "assets/img/modal-compare.png",
+        "headline": "Compare prices in one click",
+        "body": "Drop a product link and Pickoo checks every store — price, coupons and shipping — to find the lowest total.",
+        "illustrationContent": {
+          "product": "Coco Croissant Bag $299.99 (-80% badge, benefit 'Soft curves and a bow' / 'add charm to everyday carry.')",
+          "offers": [
+            {
+              "store": "Amazon",
+              "total": "$305.99",
+              "note": "Item $299.99 + $6 shipping"
+            },
+            {
+              "store": "Walmart",
+              "total": "$279.99",
+              "note": "Coupon -$20, shipping free",
+              "badge": "Lowest"
+            },
+            {
+              "store": "eBay",
+              "total": "$299.99",
+              "note": "No coupon, free shipping"
+            }
+          ]
+        },
+        "form": {
+          "label": "Which product?",
+          "placeholder": "Paste a link or Search a product",
+          "filledValue": "walmart.com/ip/Coco-Croissant-Cherry-Bag",
+          "or": "or",
+          "dropPhoto": "Drop a photo here, or ",
+          "dropPhotoLink": "browse",
+          "viewedTitle": "Or pick one you viewed"
+        },
+        "states": {
+          "empty": "send button rgba(208,36,255,0.2), placeholder text, no link icon",
+          "linkEntered (1139:117368)": "link-03 icon at left, URL text 87% black, send button solid #d024ff"
+        }
+      },
+      {
+        "key": "track",
+        "node": "1139:116423",
+        "title": "Track Price Drops",
+        "illustration": "assets/img/modal-track.png",
+        "headline": "Never miss a price drop",
+        "body": "Pick a product and a target price. Pickoo watches it every day and tells you the moment it gets there.",
+        "illustrationContent": {
+          "notification": "Target price reached / New price and retailer",
+          "product": "Koss Porta Pro $239.99 was $299.99",
+          "chart": "Price history · Last 30 days · Your target $250 · 30 days ago → Today"
+        },
+        "form": "same as compare (shown in link-entered state: walmart.com/ip/Coco-Croissant-Cherry-Bag, solid send button)"
+      },
+      {
+        "key": "budget",
+        "node": "1139:116722",
+        "title": "Shop within budget",
+        "illustration": "assets/img/modal-budget.png",
+        "headline": "Get more for every dollar",
+        "body": "Tell Pickoo what you need and how much you want to spend. Every pick fits the budget — best value first.",
+        "illustrationContent": {
+          "budget": "Your budget $100 (progress bar ~72%)",
+          "items": [
+            {
+              "name": "Filtrete 14x14x1 HVAC Furnace Air Filter, MPR 300 MERV 5, Ba...",
+              "price": "$5.64"
+            },
+            {
+              "name": "Canvas Court Tote Bag",
+              "price": "$24.95"
+            },
+            {
+              "name": "HSMYANK Unisex Polyester Mesh Beach Bag Lightweight B...",
+              "price": "$9.98"
+            }
+          ]
+        },
+        "form": {
+          "label": "What are you shopping for?",
+          "categoriesRef": "categories",
+          "searchPlaceholder": "e.g. running shoes, a desk lamp, cat food",
+          "budgetLabel": "Your budget",
+          "budgetChips": [
+            "$25",
+            "$50",
+            "$100",
+            "$200",
+            "$500"
+          ],
+          "budgetCurrency": "$",
+          "budgetPlaceholder": "Input your budget",
+          "button": "Find picks",
+          "buttonState": "disabled (opacity .38) until category/text + budget chosen"
+        }
+      },
+      {
+        "key": "ideas",
+        "node": "1139:116940",
+        "title": "Find shopping ideas",
+        "illustration": "assets/img/modal-ideas.png",
+        "headline": "Ideas worth giving",
+        "body": "Say who it's for and the occasion. Pickoo mixes practical picks with fun surprises — all at good prices.",
+        "illustrationContent": {
+          "cards": [
+            {
+              "label": "For him",
+              "price": "$5.64"
+            },
+            {
+              "label": "For her",
+              "price": "$24.95",
+              "badge": "GIFT IDEA"
+            },
+            {
+              "label": "For the home",
+              "price": "$9.98"
+            }
+          ]
+        },
+        "form": {
+          "label": "Who's it for?",
+          "categoriesRef": "categories",
+          "searchPlaceholder": "e.g. running shoes, a desk lamp, cat food",
+          "occasionLabel": "Occasion",
+          "occasions": [
+            "Birthday",
+            "Anniversary",
+            "Housewarming",
+            "Home",
+            "Holidays",
+            "Just because",
+            "Just because"
+          ],
+          "occasionSearchPlaceholder": "e.g. running shoes, a desk lamp, cat food",
+          "button": "Get ideas",
+          "buttonState": "disabled (opacity .38)"
+        }
+      }
+    ],
+    "viewed": [
+      {
+        "name": "Coco Croissant Bag",
+        "price": "$299.99",
+        "img": "assets/img/v-coco-croissant-bag.png"
+      },
+      {
+        "name": "Koss Porta Pro Wireless",
+        "price": "$299.99",
+        "img": "assets/img/v-koss-porta-pro.png"
+      },
+      {
+        "name": "Timex Weekender 38mm",
+        "price": "$299.99",
+        "img": "assets/img/v-timex-weekender.png"
+      },
+      {
+        "name": "Fellow Carter Move Mug",
+        "price": "$299.99",
+        "img": "assets/img/v-fellow-carter-mug.png"
+      },
+      {
+        "name": "Dossier Ambery Sage",
+        "price": "$299.99",
+        "img": "assets/img/v-dossier-ambery-sage.png"
+      },
+      {
+        "name": "NEST Bamboo Candle",
+        "price": "$299.99",
+        "img": "assets/img/v-nest-bamboo-candle.png"
+      },
+      {
+        "name": "Native Union Rise Charger",
+        "price": "$299.99",
+        "img": "assets/img/v-native-union-rise.png"
+      },
+      {
+        "name": "Julia Leather Loafers",
+        "price": "$299.99",
+        "img": "assets/img/v-julia-loafers.png"
+      }
+    ],
+    "categories": [
+      {
+        "name": "Pets",
+        "img": "assets/img/c-pets.png",
+        "fit": "pre-cropped circle"
+      },
+      {
+        "name": "Travel",
+        "img": "assets/img/c-travel.png",
+        "fit": "cover; multiply"
+      },
+      {
+        "name": "Sports",
+        "img": "assets/img/c-sports.png",
+        "fit": "contain"
+      },
+      {
+        "name": "Tech",
+        "img": "assets/img/c-tech.png",
+        "fit": "cover; multiply"
+      },
+      {
+        "name": "Home",
+        "img": "assets/img/c-home.png",
+        "fit": "contain; multiply; bg rgba(0,0,0,0.02)"
+      },
+      {
+        "name": "Snacks",
+        "img": "assets/img/c-snacks.png",
+        "fit": "cover"
+      },
+      {
+        "name": "Coffee",
+        "img": "assets/img/c-coffee.png",
+        "fit": "contain"
+      },
+      {
+        "name": "Cameras",
+        "img": "assets/img/c-cameras.png",
+        "fit": "contain"
+      },
+      {
+        "name": "Audio",
+        "img": "assets/img/c-audio.png",
+        "fit": "contain"
+      },
+      {
+        "name": "Office",
+        "img": "assets/img/c-office.png",
+        "fit": "contain"
+      },
+      {
+        "name": "Furniture",
+        "img": "assets/img/c-furniture.png",
+        "fit": "contain"
+      },
+      {
+        "name": "Chargers",
+        "img": "assets/img/c-chargers.png",
+        "fit": "contain"
+      }
+    ],
+    "icons": {
+      "close": "assets/icons/x-close.svg",
+      "send": "assets/icons/arrow-narrow-right.svg",
+      "link": "assets/icons/link-03.svg",
+      "upload": "assets/icons/share-01.svg"
+    }
+  },
+  "B_chatPanel": {
+    "_nodes": {
+      "panelFromHome": "707:28288",
+      "compareResult": "1150:158573",
+      "trackerSet": "2247:90631",
+      "trackerForm": "2247:89975",
+      "likeAll": "2247:95904",
+      "added": "2406:150274"
+    },
+    "_notes": [
+      "Panel is fixed at left 1260 / top 80 inside the 1920x1080 frame => right:20px; top:80px (below the 64px header + 16px); bottom:20px; 640x980.",
+      "The panel never dims the page - homepage stays interactive-looking behind it (no overlay).",
+      "Conversation viewport is absolute left:24 top:72 width:592 height:908 with overflow-y:auto; a 152px white fade (transparent -> white at 66%) sits behind the composer at top:828.",
+      "707:28288 shows the carry-on GRID (2-col 288px cards) inside the panel, but every card there is placeholder 'A.P.C. Lou Canvas Tote...' $87.00 / $115.00 From Walmart; use the real carry-on data from section C instead.",
+      "Compare result (1150:158573) list cards all say 'MARKUS Office Chair' $36.99/$128.00 although the question is about the Coco Croissant Cherry Bag; summary copy says lowest total $47.15 at Walmart. Design placeholders - pick your own consistent data.",
+      "1150:158573 also contains (scrolled below the fold) a 5-store comparison table (Walmart, adidas, Amazon, Topo Designs, L.L.Bean), an 'Okiee's pick' message and 2 product cards - not extracted in detail; frame name still says 'Okiee' (old brand).",
+      "Tracker form (2247:89975) uses Indonesian Rupiah (Rp2.280.000 / Rp2.166.000) while everything else uses $ - leftover from another market.",
+      "The tracker form section labels are labelled 'Executive Chair' in layer names but render as: Set expected price / Quick input / Task expiry / Notifications.",
+      "'Add All to Favorites' flow: tapping it posts a user bubble 'Add All to Favorites', the in-card button goes to opacity .5 (disabled), then the assistant replies in a short gray bubble.",
+      "Two different list-card variants: compact (thumb 100px, bg #fbfbfd, padding 12, radius 12, used for compare results & like-all) and tracker (thumb 145px, white card padding 16 radius 16 inside gray bubble, with full-width 'Set Price Tracker' button)."
+    ],
+    "css": {
+      "panel": "position:fixed; right:20px; top:80px; width:640px; height:980px; background:#fff; border-radius:24px; box-shadow:0 0 20px 0 rgba(0,0,0,0.1); overflow:hidden;",
+      "header": "position:absolute; left:24px; right:24px; top:24px; height:24px; display:flex; align-items:center; gap:8px;",
+      "headerLogo": "width:24px; height:24px; /* icons/pickoo-agent-logo.svg */",
+      "headerTitle": "flex:1; font:590 20px/1.2 'SF Pro'; color:rgba(0,0,0,0.87);",
+      "headerActions": "display:flex; gap:16px; /* maximize-01.svg 20px inside 24px box (offset 2px), x-close.svg 24px */",
+      "viewport": "position:absolute; left:24px; top:72px; width:592px; height:908px; overflow-y:auto; overflow-x:hidden; display:flex; flex-direction:column; gap:20px; align-items:flex-end; padding-bottom:160px;",
+      "userBubble": "align-self:flex-end; max-width:80%; background:rgba(208,36,255,0.06); padding:12px 16px; border-radius:100px /* 20px when it wraps to 2 lines */; font:400 16px/22px 'SF Pro'; color:#6500b8;",
+      "sentProductChip": "align-self:flex-end; width:220px; height:56px; background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:12px; padding:12px; display:flex; align-items:center; gap:12px; /* thumb 32x32 radius 4.8px bg rgba(0,0,0,0.03) object-fit:contain; name 400 14px/1.2 rgba(0,0,0,0.87) ellipsis; optional variant line 400 12px/1.2 rgba(0,0,0,0.4) letter-spacing:-0.18px */",
+      "assistantBubble": "align-self:stretch; background:#f6f6f6; padding:12px 16px; border-radius:20px; display:flex; flex-direction:column; gap:12px; font:400 16px/24px 'SF Pro'; color:rgba(0,0,0,0.87); /* short replies shrink-wrap (width:auto) */",
+      "assistantHeadline": "font:700 16px/1.4 'SF Pro'; color:#000; /* first line in the 707:28288 answer */",
+      "assistantSubline": "font:400 16px/24px 'SF Pro'; color:#5f5f68;",
+      "listCardCompact": "background:#fbfbfd; border-radius:12px; padding:12px; display:flex; gap:12px; align-items:center; /* stack gap 12px */",
+      "listCardCompactThumb": "width:100px; height:100px; border:1px solid rgba(0,0,0,0.09); border-radius:13.333px; object-fit:contain; background:#fff; /* + overlay rgba(0,0,0,0.03) */",
+      "listCardTracker": "background:#fff; border-radius:16px; padding:16px; display:flex; gap:12px; align-items:center;",
+      "listCardTrackerThumb": "width:145px; height:145px; border:1px solid rgba(0,0,0,0.09); border-radius:12px; object-fit:contain /* shokz uses cover */; + overlay rgba(0,0,0,0.03);",
+      "listCardBody": "flex:1; display:flex; flex-direction:column; gap:6px; /* tracker variant: content gap 6px, then 12px to button */",
+      "listCardName": "font:510 16px/22px 'SF Pro'; color:rgba(0,0,0,0.87); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;",
+      "benefitLine": "display:flex; gap:4px; align-items:center; font:400 14px/1.2 'SF Pro'; /* sparkle.svg 18px; highlight color:#d024ff; rest color:rgba(0,0,0,0.5) */",
+      "priceRow": "display:flex; gap:3px; align-items:baseline; line-height:20px; /* price 590 18px rgba(0,0,0,0.87); was 400 14px rgba(0,0,0,0.4) line-through */",
+      "storeTag": "height:18px; display:inline-flex; align-items:center; gap:4px; padding:2px 6px 2px 2px; border-radius:19px; background:#fafafa; font:400 12px/1.4 'SF Pro'; color:rgba(0,0,0,0.4); /* 14px round store icon img/store-walmart.png */",
+      "setPriceTrackerBtn": "width:100%; height:40px; border-radius:12px; background:#d024ff; color:#fff; font:510 16px/20px 'SF Pro'; display:flex; align-items:center; justify-content:center;",
+      "addAllFavoritesBtn": "width:100%; height:32px; padding:4px 12px; border-radius:1000px; border:1px solid rgba(208,36,255,0.2); background:linear-gradient(rgba(208,36,255,0.06),rgba(208,36,255,0.06)),#fff; color:#d024ff; font:400 14px/1.4 'SF Pro'; letter-spacing:-0.21px; text-align:center;",
+      "addAllFavoritesBtnDisabled": "opacity:0.5; pointer-events:none;",
+      "gridCard288": "width:288px; background:#fff; border:1.167px solid rgba(0,0,0,0.09); border-radius:16px; overflow:hidden; display:flex; flex-direction:column; gap:20px; padding-bottom:20px; /* image square 1:1, white bg + rgba(0,0,0,0.03) overlay, object-fit:contain ~60% width; details padding 0 16px gap 8px; name 590 18px/1.4 2 lines; benefit 400 16px/22.4px #d024ff with 16x22 sparkle; price 590 20px #212121 + was 400 14px/20.9px rgba(0,0,0,0.4) line-through; storeTag */",
+      "cardGrid": "display:grid; grid-template-columns:repeat(2,288px); gap:20px 16px;",
+      "bottomFade": "position:absolute; left:0; top:828px; width:640px; height:152px; background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 66%);",
+      "composer": "position:absolute; left:24px; bottom:24px; width:592px; background:#fff; border-radius:20px; box-shadow:0 0 40px 0 rgba(0,0,0,0.1); padding:16px 12px 12px; display:flex; flex-direction:column; gap:16px;",
+      "composerText": "padding:0 4px; max-height:110px; font:400 16px/1.4 'SF Pro'; color:rgba(0,0,0,0.87); /* placeholder color:rgba(0,0,0,0.65) */",
+      "composerToolbar": "display:flex; justify-content:flex-end; align-items:center; gap:16px; /* icons/plus-add.svg 24px box (#212121 stroke 1.8) + send 36px circle #d024ff with arrow-narrow-right.svg */",
+      "trackerFormCard": "border:1px solid rgba(0,0,0,0.09); border-radius:20px; padding:20px; display:flex; flex-direction:column; gap:16px;",
+      "trackerProduct": "display:flex; gap:12px; /* thumb 64px radius 8 object-fit:cover; name 510 14px/1.4 + chevron-right-small.svg 12px; variant 400 12px rgba(0,0,0,0.4); current price 510 14px #d024ff */",
+      "trackerDivider": "height:1px; background:rgba(0,0,0,0.09);",
+      "trackerFieldLabel": "font:400 14px/1.4 'SF Pro'; color:rgba(0,0,0,0.65); margin-bottom:8px;",
+      "trackerPriceInput": "height:40px; padding:0 12px; border-radius:1000px; background:#f5f5f5; display:flex; align-items:center; gap:12px; font:400 14px/1.4 'SF Pro'; letter-spacing:-0.42px; color:rgba(0,0,0,0.87); /* caret 1px #d024ff; clear btn 14px circle rgba(0,0,0,0.5) with close-small-white.svg */",
+      "chipRow": "display:flex; gap:12px; /* chips flex:1 */",
+      "chip": "height:32px; padding:4px 12px; border-radius:1000px; background:rgba(0,0,0,0.05); font:400 14px/1.4 'SF Pro'; letter-spacing:-0.21px; color:rgba(0,0,0,0.87); text-align:center;",
+      "chipSelected": "background:rgba(208,36,255,0.06); border:1px solid rgba(208,36,255,0.2); color:#d024ff;",
+      "checkboxOn": "width:18px; height:18px; border-radius:90px; background:#d024ff; /* icons/check-white.svg 10.8px centered */",
+      "checkboxOff": "width:18px; height:18px; border-radius:90px; background:#fff; border:0.9px solid #e8e8ec;",
+      "checkboxLabel": "font:510 14px/1.4 'SF Pro'; color:rgba(0,0,0,0.87); /* row gap 12px, rows gap 16px */",
+      "trackerSubmit": "height:36px; width:100%; border-radius:1000px; background:#d024ff; color:#fff; font:510 16px/1.4 'SF Pro';"
+    },
+    "icons": {
+      "logo": "assets/icons/pickoo-agent-logo.svg",
+      "expand": "assets/icons/maximize-01.svg",
+      "close": "assets/icons/x-close.svg",
+      "plus": "assets/icons/plus-add.svg",
+      "send": "assets/icons/arrow-narrow-right.svg",
+      "sparkle": "assets/icons/sparkle.svg",
+      "check": "assets/icons/check-white.svg",
+      "chevronRight": "assets/icons/chevron-right-small.svg",
+      "clearSmall": "assets/icons/close-small-white.svg",
+      "storeWalmart": "assets/img/store-walmart.png"
+    },
+    "copy": {
+      "title": "Pickoo Agent",
+      "composerPlaceholder": "Ask a follow-up...",
+      "fromHome": {
+        "user": "Find a carry-on under $50",
+        "assistantHeadline": "4 carry-ons under $50",
+        "assistantBody": "My pick is the Protege Pilot: the most compact of these three bags.",
+        "cards": "4 grid cards (see section C carry-ons; placeholders here)"
+      },
+      "compareResult": {
+        "sentProduct": {
+          "name": "Coco Croissant Bag",
+          "img": "assets/img/chat-coco-croissant-bag-thumb.png"
+        },
+        "user": "Compare prices for this product across all stores",
+        "assistant": "Checked 5 stores for Coco Croissant Cherry Bag — the lowest total is $47.15 at Walmart, $4.81 less than the most expensive.",
+        "belowFoldTableStores": [
+          "Walmart",
+          "adidas",
+          "Amazon",
+          "Topo Designs",
+          "L.L.Bean"
+        ]
+      },
+      "trackerSet": {
+        "user": "Alert me if DERBYSTAR Bundesliga Brillant Replica drops below $42",
+        "assistant": [
+          "Done! I'll watch DERBYSTAR Bundesliga Brillant Replica at every store above and message you here as soon as the total drops below $42.",
+          "You can see and edit this alert anytime under Auto-task."
+        ],
+        "button": "Set Price Tracker"
+      },
+      "trackerForm": {
+        "sentProduct": {
+          "name": "Shokz OpenRun Pro 2",
+          "variant": "Orange",
+          "img": "assets/img/chat-shokz-openrun-pro2.png"
+        },
+        "user": "Track Shokz OpenRun Pro 2 prices",
+        "assistantHtml": "Sure. Shokz OpenRun Pro 2 is <b>Rp2.280.000</b> today. Set the price you want below, and I’ll monitor it for the next 30 days and notify you when it drops.",
+        "product": {
+          "name": "Shokz OpenRun Pro 2",
+          "variant": "Orange",
+          "currentPrice": "Current price: Rp2.280.000"
+        },
+        "expectedPriceLabel": "Set expected price",
+        "expectedPriceValue": "Rp2.166.000",
+        "quickInputLabel": "Quick input",
+        "quickInput": [
+          "-5%",
+          "-10%",
+          "-15%",
+          "-20%"
+        ],
+        "quickInputSelected": "-5%",
+        "expiryLabel": "Task expiry",
+        "expiry": [
+          "7 days",
+          "30 days",
+          "90 days"
+        ],
+        "expirySelected": "7 days",
+        "notificationsLabel": "Notifications",
+        "notifications": [
+          {
+            "label": "Via Email",
+            "checked": true
+          },
+          {
+            "label": "Via Desktop notification",
+            "checked": false
+          }
+        ],
+        "submit": "Set Price Tracker"
+      },
+      "likeAll": {
+        "user": "Alert me if DERBYSTAR Bundesliga Brillant Replica drops below $42",
+        "assistant": "(same 'Done! I'll watch...' copy)",
+        "button": "Add All to Favorites",
+        "afterUser": "Add All to Favorites",
+        "afterAssistant": "I've added all the items to your “Favorites” for you."
+      }
+    },
+    "listProducts": [
+      {
+        "name": "MARKUS Office Chair",
+        "benefitHighlight": "Interior pockets",
+        "benefitRest": "keep daily essentials tidy.",
+        "price": "$36.99",
+        "was": "$128.00",
+        "store": "From Walmart",
+        "img": "assets/img/chat-markus-chair.png"
+      },
+      {
+        "name": "Shokz OpenRun Pro 2",
+        "benefitHighlight": "Interior pockets",
+        "benefitRest": "keep daily essentials tidy.",
+        "price": "$36.99",
+        "was": "$128.00",
+        "store": "From Walmart",
+        "img": "assets/img/chat-shokz-openrun-pro2.png"
+      }
+    ],
+    "placeholderGridCard": {
+      "name": "A.P.C. Lou Canvas Tote",
+      "benefit": "This classic costs less",
+      "price": "$87.00",
+      "was": "$115.00",
+      "store": "From Walmart",
+      "img": "assets/img/chat-apc-tote.png"
+    }
+  },
+  "C_fullscreenChat": {
+    "_nodes": {
+      "fullscreenResults": "707:27778",
+      "fullscreenGreeting": "2403:154176"
+    },
+    "_notes": [
+      "Fullscreen chat keeps the normal site header (Chat tab bold = active) and puts the chat in a white card inset 20px left/right, top 80px, 1000px tall, radius 24, shadow 0 0 20px rgba(0,0,0,.1). Content column is 1280px centered (padding 0 300px in results frame; greeting uses padding 0 460px with 1280 column).",
+      "Top-right of the workspace: minimize-01 (collapse back to side panel) + x-close; the 'Pickoo Agent' identity block exists at left:80 but is opacity:0 (hidden) in the greeting frame.",
+      "Results grid is 5 columns (243.2px cards, gap 16px), although layer is named 'Four columns' and the copy says '4 carry-ons under $50' while showing 10+ cards.",
+      "Row 3 (2446:323672, below the fold) contains placeholder 'A.P.C. Lou Canvas Tote...' cards ($87.00/$115.00) - not real luggage; omitted from data.",
+      "Assistant body copy literally repeats 'My pick is the Protege Pilot...' three times (designer filler).",
+      "Logged-out greeting copy describes a VIDEO/IMAGE creation assistant (not shopping) - copied from another product; consider rewriting for Pickoo shopping.",
+      "Empty-state composer is a different component from the results composer: single row, radius 24, bg rgba(255,255,255,0.9), padding 16, placeholder 'Ask Pickoo', send button at opacity .5 (disabled). The results composer is 800px wide, two-row (text then toolbar), radius 20, placeholder filled with 'Find a carry-on under $50'.",
+      "Bottom page fade: 147px tall, transparent -> white at 78%, full width at top:933."
+    ],
+    "css": {
+      "workspace": "position:fixed; left:20px; right:20px; top:80px; height:1000px; background:#fff; border-radius:24px; box-shadow:0 0 20px 0 rgba(0,0,0,0.1); overflow:hidden; display:flex; flex-direction:column; align-items:center; gap:24px; padding-bottom:24px;",
+      "workspaceHeader": "width:100%; display:flex; justify-content:flex-end; padding:24px 24px 0 80px; /* actions gap 16px: icons/minimize-01.svg (20px in 24 box) + icons/x-close.svg 24px */",
+      "column": "width:1280px; flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:32px;",
+      "userBubble": "align-self:flex-end; background:rgba(208,36,255,0.06); padding:12px 16px; border-radius:100px; font:400 16px/22px 'SF Pro'; color:#6500b8;",
+      "assistantBubble": "width:1024px; background:#f6f6f6; padding:12px 16px; border-radius:20px; font:400 16px/24px 'SF Pro'; color:rgba(0,0,0,0.87); /* headline 700 16px/1.4 #000, body 16px/24px #5f5f68 */",
+      "grid": "display:grid; grid-template-columns:repeat(5,1fr); gap:24px 16px; margin-top:24px;",
+      "card": "background:#fff; border:1.167px solid rgba(0,0,0,0.09); border-radius:16px; overflow:hidden; display:flex; flex-direction:column; gap:20px; padding-bottom:20px;",
+      "cardImage": "aspect-ratio:1/1; width:100%; background:#f8f8f8; border-radius:16px 16px 0 0; /* img centered ~85% height, mix-blend-mode:multiply, object-fit:contain */",
+      "cardDetails": "padding:0 16px; display:flex; flex-direction:column; gap:8px;",
+      "cardName": "font:590 18px/1.4 'SF Pro'; color:rgba(0,0,0,0.87); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;",
+      "cardBenefit": "display:flex; gap:4px; align-items:center; font:400 16px/22.4px 'SF Pro'; color:#d024ff; /* sparkle.svg 16x22.4 */",
+      "cardPrice": "font:590 20px/27.8px 'SF Pro'; color:#212121; /* '$' same size */",
+      "cardWas": "font:400 14px/20.9px 'SF Pro'; color:rgba(0,0,0,0.4); text-decoration:line-through; margin-left:4px;",
+      "cardStore": "height:18px; display:inline-flex; align-items:center; gap:4px; padding:2px 6px 2px 2px; border-radius:19px; background:#fafafa; font:400 12px/1.4 'SF Pro'; color:rgba(0,0,0,0.4); /* store-walmart.png 14px */",
+      "composerResults": "position:fixed; left:50%; transform:translateX(-50%); bottom:24px; width:800px; background:#fff; border-radius:20px; box-shadow:0 0 40px 0 rgba(0,0,0,0.1); padding:12px 12px 12px; display:flex; flex-direction:column; gap:16px;",
+      "composerEmpty": "position:fixed; left:50%; transform:translateX(-50%); bottom:24px /* top:986 in frame */; width:800px; background:rgba(255,255,255,0.9); border-radius:24px; box-shadow:0 0 40px 0 rgba(0,0,0,0.1); padding:16px; display:flex; align-items:center; gap:8px; font:400 16px/1.4 'SF Pro'; /* placeholder rgba(0,0,0,0.4); actions gap 16px: plus-add.svg + send 36px #d024ff circle, opacity .5 when empty */",
+      "bottomFade": "position:fixed; left:0; right:0; bottom:0; height:147px; background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 77.9%); pointer-events:none;",
+      "greetingBubble": "width:1024px; background:#f6f6f6; padding:12px 16px; border-radius:20px; font:400 16px/24px 'SF Pro'; color:rgba(0,0,0,0.87); /* ul list-style:disc; li margin-left:24px; bold spans 700 */"
+    },
+    "copy": {
+      "user": "Find a carry-on under $50",
+      "assistantHeadline": "4 carry-ons under $50",
+      "assistantBody": "My pick is the Protege Pilot: the most compact of these three bags.",
+      "composerValue": "Find a carry-on under $50",
+      "greeting": {
+        "html": "<p>Hi, I’m <b>Pickoo</b> 👋 Your AI team for creating and getting things done.</p><ul><li><b>Video creation</b> — Turn ideas or product images into product videos, brand ads, and short dramas. Remix trending videos in your style, or bring photos to life with magic effects.</li><li><b>Images &amp; documents</b> — Create posters, product shots, slides, and illustrated books.</li><li><b>Personal assistant</b> — Organize emails, summarize meetings, and track next steps.</li></ul><p><b>Log in and bring your first idea to life</b>!</p>",
+        "composerPlaceholder": "Ask Pickoo"
+      }
+    },
+    "carryOns": [
+      {
+        "name": "Protege Pilot Softside Carry-On Luggage",
+        "benefit": "25% off today",
+        "price": "$31.50",
+        "was": "$42.00",
+        "store": "From Walmart",
+        "img": "assets/img/lug-protege-pilot.png"
+      },
+      {
+        "name": "Leumius Hardside Carry-On Spinner",
+        "benefit": "20% off today",
+        "price": "$32.00",
+        "was": "$40.00",
+        "store": "From Walmart",
+        "img": "assets/img/lug-leumius-hardside.png"
+      },
+      {
+        "name": "Ktaxon Carry-On Luggage & Vanity Case",
+        "benefit": "30% off today",
+        "price": "$42.00",
+        "was": "$60.00",
+        "store": "From Walmart",
+        "img": "assets/img/lug-ktaxon-vanity.png"
+      },
+      {
+        "name": "Alvantor 20-Inch Hardside Carry-On",
+        "benefit": "20% off today",
+        "price": "$32.00",
+        "was": "$40.00",
+        "store": "From Walmart",
+        "img": "assets/img/lug-alvantor-20.png"
+      },
+      {
+        "name": "Ktaxon 20-Inch Navy Spinner Carry-On",
+        "benefit": "35% off today",
+        "price": "$39.00",
+        "was": "$60.00",
+        "store": "From Walmart",
+        "img": "assets/img/lug-ktaxon-navy.png"
+      },
+      {
+        "name": "Ktaxon Lightweight Softside Spinner",
+        "benefit": "20% off today",
+        "price": "$44.00",
+        "was": "$55.00",
+        "store": "From Walmart",
+        "img": "assets/img/lug-ktaxon-softside.png"
+      },
+      {
+        "name": "Smicure Carry-On Luggage & Travel Set",
+        "benefit": "30% off today",
+        "price": "$49.00",
+        "was": "$70.00",
+        "store": "From Walmart",
+        "img": "assets/img/lug-smicure-set.png"
+      },
+      {
+        "name": "Travelhouse Lavender Spinner Carry-On",
+        "benefit": "25% off today",
+        "price": "$37.50",
+        "was": "$50.00",
+        "store": "From Walmart",
+        "img": "assets/img/lug-travelhouse-lavender.png"
+      },
+      {
+        "name": "Crossroad 20-Inch Coral Spinner Luggage",
+        "benefit": "20% off today",
+        "price": "$36.00",
+        "was": "$45.00",
+        "store": "From Walmart",
+        "img": "assets/img/lug-crossroad-coral.png"
+      },
+      {
+        "name": "BoardingBlue Travel Duffel & Pillow",
+        "benefit": "35% off today",
+        "price": "$19.50",
+        "was": "$30.00",
+        "store": "From Walmart",
+        "img": "assets/img/lug-boardingblue-duffel.png"
+      }
+    ],
+    "icons": {
+      "minimize": "assets/icons/minimize-01.svg",
+      "close": "assets/icons/x-close.svg",
+      "plus": "assets/icons/plus-add.svg",
+      "send": "assets/icons/arrow-narrow-right.svg",
+      "sparkle": "assets/icons/sparkle.svg",
+      "store": "assets/img/store-walmart.png"
+    }
+  },
+  "D_pdp": {
+    "_nodes": {
+      "drawer": "2584:382002 (panel 2584:382520)",
+      "fullscreen": "1218:266596",
+      "fullscreenMore": "1300:56021"
+    },
+    "_notes": [
+      "Drawer is 480px wide (not ~350): left 1420 / top 80 / height 980 => right:20px, sitting ON TOP of the fullscreen chat workspace (chat composer hidden while it is open). Its own content scrolls; image is 480x480 edge-to-edge at top.",
+      "Drawer mixes products: hero image is the Ktaxon carry-on + vanity case (assets/img/pdp-luggage.png == lug-ktaxon-vanity.png) but title/price block is the KEMEI hair trimmer, price $87.00 while the comparison says Walmart $29.00 and button 'Buy at Walmart · $87'. Pick one product for the demo.",
+      "Fullscreen PDP is the KEMEI trimmer at $29.00 and replaces the 'Lowest of 3 stores' bar block with a 'Lowest in 30 days' price-history chart; the drawer has the bars instead. Both share the bullet summary in the same gray card.",
+      "Fullscreen PDP layout: same white workspace card as fullscreen chat (left/right 20 or 26, top 80, h 1000, radius 24, shadow 0 0 20px rgba(0,0,0,.1)); 1280 column centered; LEFT gallery (72px thumbs column + 552px main image) is fixed/sticky, RIGHT 560px column scrolls; bottom action bar is sticky at bottom of the right column (white gradient behind).",
+      "Header nav in fullscreen PDP shows 'Explore' bold (PDP opened from Explore) whereas drawer variant shows 'Chat' bold.",
+      "Variation chips: selected = violet tint + border; disabled = text #bdbdbd on same gray bg ('Yellow'). Labels in layers read 'Flamingo Pink' but render as 'Color: Black' / 'Power:Ni-Cd' (no space after colon in Power).",
+      "Quick-action chips row in the drawer metadata also contains a 4th hidden 'Compare' chip with icon; only 3 chips render.",
+      "Review copy talks about shoes/leather and Details mention 'Soft calfskin', 'Made in Spain' and a 13\" laptop - copied from a bag PDP; product is a hair trimmer.",
+      "Gallery thumbs: 72x72; first thumb selected (2px #d024ff border in screenshot). Image counter '1/15' (dark pill) and variant pill 'Black/Red' (white pill) overlay the bottom of the main image.",
+      "Review media 1 & 2 are the same files as gallery images 3 & 4 (deduped); detail image is gallery image 2.",
+      "Price chart: use assets/icons/pdp-price-chart.svg (512x56, dashed target line #ECA7FF + gradient area + line); tooltip '$29.00' is HTML; chart-dot svg marks today's point at right."
+    ],
+    "css": {
+      "drawer": "position:fixed; right:20px; top:80px; width:480px; height:980px; background:#fff; border-radius:24px; box-shadow:0 0 20px 0 rgba(0,0,0,0.1); overflow:hidden; /* radius+shadow inferred from sibling panels; content scrolls under a fixed bottom bar */",
+      "drawerScroll": "height:100%; overflow-y:auto; padding-bottom:140px;",
+      "drawerImage": "width:480px; height:480px; object-fit:contain; background:#f8f8f8;",
+      "drawerTopButtons": "position:absolute; top:24px; left:24px; right:24px; display:flex; justify-content:space-between; /* right group gap 16px */",
+      "drawerIconBtn": "width:44px; height:44px; border-radius:999px; background:rgba(0,0,0,0.65); display:flex; align-items:center; justify-content:center; /* heart-rounded-white.svg, maximize-01-white.svg (20px), close-white.svg 24px */",
+      "imageCounter": "position:absolute; right:24px; bottom:24px; padding:4px 8px; border-radius:999px; background:rgba(0,0,0,0.65); color:#fff; font:400 16px/24px 'SF Pro';",
+      "variantPill": "position:absolute; left:50%; transform:translateX(-50%); bottom:24px; padding:4px 12px; border-radius:999px; background:rgba(255,255,255,0.87); border:0.5px solid rgba(0,0,0,0.09); color:rgba(0,0,0,0.87); font:400 16px/24px 'SF Pro';",
+      "infoSection": "padding:24px 24px 0; display:flex; flex-direction:column; gap:20px;",
+      "drawerPrice": "font:700 26px/34px 'SF Pro'; color:#000;",
+      "fullPrice": "font:700 32px/40px 'SF Pro'; color:#000;",
+      "metaLine": "font:400 14px/20px 'SF Pro'; color:rgba(0,0,0,0.65);",
+      "drawerTitle": "font:510 18px/26px 'SF Pro'; color:rgba(0,0,0,0.87); margin-top:12px;",
+      "fullTitle": "font:510 26px/34px 'SF Pro'; color:rgba(0,0,0,0.87);",
+      "reviewsShortcut": "display:flex; gap:12px; align-items:center; font:510 16px/24px 'SF Pro'; color:#111; /* chevron-right-16.svg rotated */",
+      "insightCard": "background:#f6f6f6; border-radius:8px; padding:16px; display:flex; flex-direction:column; gap:16px;",
+      "insightHeadline": "display:flex; gap:4px; align-items:center; font:510 16px/24px 'SF Pro'; color:#d024ff; /* sparkle-star-small.svg 14px (gradient fill); trailing text 400 16px rgba(0,0,0,0.65) */",
+      "storeRow": "display:flex; align-items:center; gap:12px; /* rows gap 12px */",
+      "storeRowName": "width:80px; font:400 14px/20px 'SF Pro'; color:#66666e; /* lowest row: rgba(0,0,0,0.87) */",
+      "storeBarTrack": "flex:1; height:8px; border-radius:999px; background:rgba(201,204,214,0.22); position:relative; /* lowest row track: rgba(208,36,255,0.12) over white */",
+      "storeBarFill": "position:absolute; left:0; top:0; height:8px; border-radius:999px; background:#c9ccd6; /* lowest: linear-gradient(90deg,#edacff,#d024ff) */",
+      "storeRowPrice": "font:400 14px/20px 'SF Pro'; color:#66666e; text-align:right; /* lowest: 590 weight, color #d024ff */",
+      "insightDivider": "height:0.5px; background:rgba(0,0,0,0.09);",
+      "bulletTitle": "font:400 16px/24px Roboto,'SF Pro',sans-serif; color:rgba(0,0,0,0.87);",
+      "bullet": "display:flex; gap:8px; font:400 16px/24px Roboto,'SF Pro',sans-serif; color:rgba(0,0,0,0.87); /* 3px round dot at top 6.5px; lead word bold/medium */",
+      "chartBlock": "position:relative; height:137px; /* headline at top, chart svg at top:48px width:512px height:56px, labels '30 days ago'/'Today' at top:117px font 400 14px/20px #6b6b73 */",
+      "chartTooltip": "position:absolute; right:0; top:47px; background:#fff; border-radius:8px; padding:4px 8px; font:590 14px/20px 'SF Pro'; color:#7f00a1; /* + pdp-chart-tooltip-arrow.svg 8x6 below */",
+      "optionLabel": "font:510 14px/20px 'SF Pro'; color:rgba(0,0,0,0.65); margin-bottom:10px;",
+      "optionChips": "display:flex; flex-wrap:wrap; gap:8px;",
+      "optionChip": "min-width:72px; height:40px; padding:8px 12px; border-radius:999px; background:#f9fafb; font:400 16px/24px 'SF Pro'; color:rgba(0,0,0,0.87); text-align:center;",
+      "optionChipSelected": "background:rgba(208,36,255,0.07); border:1px solid rgba(208,36,255,0.2); color:#d024ff; font-weight:510;",
+      "optionChipDisabled": "color:#bdbdbd; pointer-events:none;",
+      "sectionDivider": "height:1px; background:rgba(0,0,0,0.09); /* between drawer sections, 24px margin */",
+      "availableHeading": "font:510 18px/26px 'SF Pro'; color:#111;",
+      "merchantRow": "display:flex; align-items:center; justify-content:space-between; padding:0 24px /* 0 in fullscreen */; gap:12px; /* 36px round logo; rows separated by 0.5px line inset 48px; vertical gap 12px */",
+      "merchantPrice": "font:590 16px/24px 'SF Pro'; color:rgba(0,0,0,0.87); /* 'Lowest Price' 510 14px #d024ff */",
+      "merchantMeta": "font:400 14px/20px Roboto; color:rgba(0,0,0,0.65); /* star-rating.svg 12px + '4.5' | divider 0.5x12 #bdbdbd | 'View in Walmart ↗' */",
+      "merchantBuyBtn": "width:80px; height:44px; border-radius:999px; background:#fff; border:1px solid #dbdbe0; font:510 16px/24px 'SF Pro'; color:#000;",
+      "showMore": "margin:8px auto 0; padding:8px 16px; font:400 16px/24px 'SF Pro'; color:rgba(0,0,0,0.65); /* + chevron down 12px */",
+      "reviewsHeading": "font:510 22px/30px 'SF Pro'; color:#111;",
+      "reviewer": "font:510 14px/20px 'SF Pro'; color:#111; /* stars row 12px gap 2px (#FFAE20, last empty), divider, store name 400 16px/24px Roboto #999 */",
+      "reviewText": "font:400 16px/24px 'SF Pro'; color:rgba(0,0,0,0.87);",
+      "reviewMedia": "width:136px; height:136px; border-radius:8px; object-fit:cover; /* gap 12px; video tile: bottom gradient 32px transparent->rgba(0,0,0,.2), play-circle.svg 32px centered, duration '00:15' 510 14px white; count badge bottom/right 8px rgba(0,0,0,.5) radius 4 padding 4px 6px image-01-white.svg 14 + '+2' */",
+      "reviewDivider": "height:0.5px; background:rgba(0,0,0,0.09); margin:16px 0;",
+      "detailsHeading": "font:590 22px/30px 'SF Pro'; color:#111;",
+      "detailsRow": "display:flex; gap:20px; padding:10px 0; font:16px/24px 'SF Pro'; /* key width:144px weight 510 rgba(0,0,0,0.65); value 400 rgba(0,0,0,0.87) */",
+      "bottomBar": "position:absolute; left:0; right:0; bottom:0; padding:0 24px 24px; display:flex; flex-direction:column; gap:12px; background:linear-gradient(180deg,rgba(255,255,255,0) 15.8%,#fff 50%);",
+      "quickChip": "background:#fff; border-radius:999px; padding:8px 12px; min-width:80px; box-shadow:0 0 10px rgba(0,0,0,0.08); font:400 14px/20px 'SF Pro'; color:#000; /* row gap 10px */",
+      "buyBtn": "flex:1; height:56px; border-radius:999px; background:#d024ff; color:#fff; font:510 18px/26px 'SF Pro'; display:flex; align-items:center; justify-content:center; gap:8px; /* trailing '↗' 18px */",
+      "askPickooBtn": "display:flex; flex-direction:column; align-items:center; gap:6px; font:400 14px Inter,'SF Pro',sans-serif; color:rgba(0,0,0,0.65); /* icon assets/icons/ask-pickoo.svg 30px; row gap 24px from buy button */",
+      "fullWorkspace": "position:fixed; left:20px; right:20px; top:80px; height:1000px; background:#fff; border-radius:24px; box-shadow:0 0 20px 0 rgba(0,0,0,0.1);",
+      "fullHeaderIcons": "position:absolute; top:24px; right:24px; display:flex; gap:16px; /* heart-rounded.svg (black), minimize-01.svg, x-close.svg, all 24px */",
+      "fullLayout": "width:1280px; margin:72px auto 0; display:flex; gap:80px; /* gallery 640 sticky, info 560 scroll (height 927) */",
+      "galleryThumbs": "display:flex; flex-direction:column; gap:12px; width:72px; /* thumb 72x72 radius 8 object-fit:cover; selected border 2px #d024ff */",
+      "galleryMain": "width:552px; height:552px; margin-left:16px; border-radius:8px; object-fit:contain; position:relative;"
+    },
+    "copy": {
+      "drawer": {
+        "price": "$87.00",
+        "meta": "Diskon 10% · Authenticated · Free Shipping",
+        "title": "KM-1419 KEMEI Men Rechargeable 3in1 Hair Trimmer Clipper Razor Nose Beard Shaver Machine",
+        "insightHeadline": "Lowest of 3 stores",
+        "insightTail": ",  $1.32 less than Amazon",
+        "stores": [
+          {
+            "store": "Walmart",
+            "price": "$29.00",
+            "barWidthPct": 62.56,
+            "lowest": true
+          },
+          {
+            "store": "Amazon",
+            "price": "$49.50",
+            "barWidthPct": 71.1
+          },
+          {
+            "store": "Ebay",
+            "price": "$62.89",
+            "barWidthPct": 77.52
+          }
+        ],
+        "imageCounter": "1/15",
+        "variantPill": "Black/Red",
+        "buy": "Buy at Walmart · $87",
+        "buyArrow": "↗"
+      },
+      "fullscreen": {
+        "title": "KM-1419 KEMEI Men Rechargeable 3in1 Hair Trimmer Clipper Razor Nose Beard Shaver Machine",
+        "reviewsShortcut": "What People are Saying",
+        "price": "$29.00",
+        "meta": "Diskon 10% · Authenticated · Free Shipping",
+        "insightHeadline": "Lowest in 30 days",
+        "insightTail": ", fits your small space",
+        "chart": {
+          "svg": "assets/icons/pdp-price-chart.svg",
+          "dot": "assets/icons/pdp-chart-dot.svg",
+          "tooltip": "$29.00",
+          "tooltipArrow": "assets/icons/pdp-chart-tooltip-arrow.svg",
+          "left": "30 days ago",
+          "right": "Today"
+        },
+        "buy": "Buy at Walmart · $29"
+      },
+      "bullets": {
+        "title": "Easy Care & Low Maintenance",
+        "items": [
+          {
+            "lead": "Care:",
+            "text": "Machine washable for quick, hassle-free cleaning and time-saving maintenance"
+          },
+          {
+            "lead": "Fit:",
+            "text": "Designed in women's plus sizes to comfortably accommodate fuller figures"
+          }
+        ]
+      },
+      "options": [
+        {
+          "label": "Color: Black",
+          "values": [
+            "Black",
+            "Red",
+            "Blue",
+            "Yellow",
+            "Green",
+            "Brown",
+            "Purple"
+          ],
+          "selected": "Black",
+          "disabled": [
+            "Yellow"
+          ]
+        },
+        {
+          "label": "Power:Ni-Cd",
+          "values": [
+            "Ni-Cd",
+            "Li-ion",
+            "Ni-Cd-plus"
+          ],
+          "selected": "Ni-Cd",
+          "disabled": []
+        }
+      ],
+      "quickActions": [
+        "Track price",
+        "Is this a good price?",
+        "Compare with another"
+      ],
+      "askPickoo": "Ask Pickoo",
+      "availableAt": {
+        "heading": "Available at",
+        "rows": [
+          {
+            "store": "Walmart",
+            "logo": "assets/img/store-logo-walmart.png",
+            "price": "$29.00",
+            "badge": "Lowest Price",
+            "rating": "4.5",
+            "link": "View in Walmart ↗",
+            "button": "Buy"
+          },
+          {
+            "store": "Amazon",
+            "logo": "assets/img/store-logo-amazon.png",
+            "price": "$32.00",
+            "rating": "4.5",
+            "link": "View in Amazon ↗",
+            "button": "Buy"
+          },
+          {
+            "store": "Ebay",
+            "logo": "assets/img/store-logo-ebay.png",
+            "price": "$36.00",
+            "rating": "4.5",
+            "link": "View in Ebay ↗",
+            "button": "Buy"
+          }
+        ],
+        "showMore": "Show More"
+      },
+      "reviews": {
+        "heading": "What People are Saying",
+        "items": [
+          {
+            "name": "Maya L",
+            "stars": 4,
+            "store": "Walmart",
+            "text": "Great design and the color looks even better in person than it does in the photos. The shoes have a clean, stylish look that’s easy to match with both casual outfits and sportswear. The material feels solid, and the overall finish looks premium for the price.",
+            "media": [
+              {
+                "img": "assets/img/pdp-3.png",
+                "video": true,
+                "duration": "00:15"
+              },
+              {
+                "img": "assets/img/pdp-4.png"
+              },
+              {
+                "img": "assets/img/pdp-review-3.png",
+                "moreCount": "+2"
+              }
+            ]
+          },
+          {
+            "name": "Selissa M",
+            "stars": 4,
+            "store": "Amazon",
+            "text": "",
+            "media": [
+              {
+                "img": "assets/img/pdp-review-4.png"
+              }
+            ]
+          },
+          {
+            "name": "Micheal",
+            "stars": 4,
+            "store": "Ebay",
+            "text": "The leather softens beautifully after a few weeks. Goes with literally everything in my closet and ages better than I expected.match with both casual outfits and sportswear. The material feels solid, and the overall finish looks premium for the price.",
+            "media": []
+          }
+        ]
+      },
+      "details": {
+        "heading": "Details",
+        "rows": [
+          [
+            "Dimensions",
+            "24 × 10.5 × 16 cm"
+          ],
+          [
+            "Material",
+            "Soft calfskin"
+          ],
+          [
+            "Hardware",
+            "Palladium finish Amazon Review Highlights"
+          ],
+          [
+            "Origin",
+            "Made in Spain"
+          ]
+        ],
+        "image": "assets/img/pdp-2.png",
+        "caption": "Fits your 13\" laptop cleanly — the original Puzzle was too snug at the corners Folded edge holds shape — no sag after months of daily use, embossed calf wears in"
+      }
+    },
+    "gallery": [
+      "assets/img/pdp-1.png",
+      "assets/img/pdp-2.png",
+      "assets/img/pdp-3.png",
+      "assets/img/pdp-4.png"
+    ],
+    "luggageImage": "assets/img/pdp-luggage.png",
+    "icons": {
+      "heartWhite": "assets/icons/heart-rounded-white.svg",
+      "heart": "assets/icons/heart-rounded.svg",
+      "maximizeWhite": "assets/icons/maximize-01-white.svg",
+      "closeWhite": "assets/icons/close-white.svg",
+      "minimize": "assets/icons/minimize-01.svg",
+      "close": "assets/icons/x-close.svg",
+      "sparkleStar": "assets/icons/sparkle-star-small.svg",
+      "star": "assets/icons/star-rating.svg",
+      "starEmpty": "assets/icons/star-empty.svg",
+      "chevronRight": "assets/icons/chevron-right-16.svg",
+      "play": "assets/icons/play-circle.svg",
+      "imageCount": "assets/icons/image-01-white.svg",
+      "askPickoo": "assets/icons/ask-pickoo.svg"
+    }
+  },
+  "E_autoTask": {
+    "_nodes": {
+      "page": "1519:74765",
+      "chooser": "1519:74444 (modal 2142:147558)",
+      "success": "1519:74666 (toast 1519:74692)",
+      "delete": "1519:74695 (menu 1519:74721)",
+      "empty": "2446:324131"
+    },
+    "_notes": [
+      "Filter counts match data: All 8, Target reached 1 (Native Union), Watching 5, Paused 2 (Rattan, Fellow Aiden).",
+      "Three card states: watching (toggle on, blue 'Alert at ...' line), target reached (toggle on, violet sparkle + '#d024ff' line 'Target reached. ...'), paused (toggle off, product block opacity .5, gray 'Paused. Your target is saved at $X.' and 'Notifications paused · Target saved' instead of Notify-via chips).",
+      "Every card uses the same placeholder variant line 'White / Teal · Size 40' (even for headphones/charger/coffee maker).",
+      "Expanded grid cards are 632 wide (gap 16) in 1519:74765; the chooser/success/delete frames use a 'collapsed' grid at 628 wide (gap 24) with only 6 visible cards - same data.",
+      "Add Auto-Task chooser modal title reads 'Edit Description' (layer 'Edit Agent') - wrong copy; probably should be 'Add Auto-Task'. Uses Inter Medium 20px unlike the SF Pro elsewhere.",
+      "'Success' state is just a top-center toast 'Added successfully' (green check) - layer text says 'A maximum of 10 photos may be uploaded.' but renders 'Added successfully'.",
+      "'Delete' state is a dropdown from the '...' button with one item 'Delete task' (red, hover bg). Component note: menu should also show Pause/Resume and Adjust target, and Delete requires a confirmation - none of those are drawn.",
+      "Empty state body copy is 'No auto-task yet' repeated 4x (placeholder) and filters + Add button are hidden; CTA 'Set Auto-task'. Header 'Chat' has no unread dot in this frame.",
+      "The 'Adjust with Pickoo' button layer is named 'Adjust with Okiee' (old brand)."
+    ],
+    "css": {
+      "page": "max-width:1280px; margin:0 auto; padding-top:32px; /* below 80px header */",
+      "title": "font:590 28px/36px 'SF Pro'; color:#222;",
+      "subtitle": "font:400 14px/20px 'SF Pro'; color:#62666a; margin-top:6px;",
+      "toolbar": "display:flex; align-items:center; gap:16px; margin-top:24px;",
+      "filterChip": "height:36px; padding:0 16px; display:flex; align-items:center; gap:4px; border-radius:999px; background:#fff; border:1px solid rgba(0,0,0,0.09); font:510 14px/20px 'SF Pro'; /* label rgba(0,0,0,0.87), count rgba(0,0,0,0.65) */",
+      "filterChipSelected": "background:#fbefff; border-color:rgba(208,36,255,0.2); color:#d024ff; /* label+count both brand */",
+      "addBtn": "margin-left:auto; height:36px; padding:5px 16px; border-radius:10px; background:#d024ff; color:#fff; display:flex; align-items:center; gap:4px; font:510 14px/1.4 'SF Pro'; /* icons/add-white.svg 20px */",
+      "grid": "display:flex; flex-wrap:wrap; gap:16px; margin-top:24px; /* 2 columns of 632px */",
+      "card": "flex:1 0 0; min-width:440px; background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:12px; /* 291px tall with alert line, 267 without */",
+      "cardHeader": "display:flex; align-items:center; gap:8px; font:400 16px/1.4 'SF Pro'; color:rgba(0,0,0,0.87); /* currency-dollar-circle.svg 28px (yellow), 'Price tracker', spacer, toggle 48x28 */",
+      "toggleOn": "width:48px; height:28px; border-radius:999px; background:#d024ff; /* white 24px knob right; use icons/toggle-on.svg */",
+      "toggleOff": "width:48px; height:28px; border-radius:999px; background:rgba(0,0,0,0.12); /* knob left; icons/toggle-off.svg */",
+      "cardDivider": "height:1px; background:rgba(0,0,0,0.09);",
+      "productBlock": "background:rgba(0,0,0,0.02); border-radius:12px; padding:12px; display:flex; gap:12px;",
+      "productBlockPaused": "opacity:0.5;",
+      "productThumb": "width:100px; height:100px; border-radius:12px; border:1px solid rgba(0,0,0,0.09); background:#f5f6f6; overflow:hidden; /* img object-fit:contain */",
+      "productName": "font:590 16px/22px 'SF Pro'; color:rgba(0,0,0,0.87); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;",
+      "productVariant": "font:400 12px/1.4 'SF Pro'; letter-spacing:-0.18px; color:rgba(0,0,0,0.65); height:20px;",
+      "merchant": "display:flex; align-items:center; gap:4px; font:400 13px/18px 'SF Pro'; color:rgba(0,0,0,0.65); /* 16px round logo with 1px rgba(0,0,0,.09) border */",
+      "productPrice": "font:590 20px/28px 'SF Pro'; color:rgba(0,0,0,0.87);",
+      "alertLine": "font:400 14px/20px 'SF Pro'; color:#2673dd;",
+      "targetReachedLine": "display:flex; gap:4px; align-items:center; font:400 14px/20px 'SF Pro'; color:#d024ff; /* icons/sparkle-target.svg */",
+      "pausedLine": "font:400 14px/20px 'SF Pro'; color:rgba(0,0,0,0.65);",
+      "actionsRow": "display:flex; align-items:center; gap:12px; /* 'Notify via:' 400 13px/18px rgba(0,0,0,.65) then chips gap 4px */",
+      "notifyChip": "padding:4px 8px; border-radius:1000px; background:rgba(0,0,0,0.02); font:400 12px/18px 'SF Pro'; color:rgba(0,0,0,0.65);",
+      "adjustBtn": "height:32px; padding:0 12px; border-radius:8px; background:#fff; border:1px solid rgba(0,0,0,0.09); font:510 14px/20px 'SF Pro'; color:rgba(0,0,0,0.87);",
+      "moreBtn": "width:32px; height:32px; /* icons/more-horizontal.svg (bordered 8px-radius box baked into svg) */",
+      "moreMenu": "position:absolute; /* anchored under More button, right-aligned */ background:#fff; border-radius:8px; padding:6px; box-shadow:0 0 5px rgba(0,0,0,0.1); min-width:135px;",
+      "moreMenuItem": "height:36px; padding:0 12px; border-radius:6px; display:flex; align-items:center; gap:8px; font:400 14px/1.4 'SF Pro'; /* hover bg rgba(0,0,0,0.05); delete item color #ff4742 with icons/trash-03-red.svg 16px */",
+      "toast": "position:fixed; top:96px; left:50%; transform:translateX(-50%); background:#fff; border-radius:12px; padding:16px 24px; display:flex; align-items:center; gap:8px; box-shadow:0 0 16px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.04); font:400 14px/1.4 'SF Pro'; color:rgba(0,0,0,0.87); /* icons/toast-success.svg 20px green #30B566 */",
+      "chooserOverlay": "position:fixed; inset:0; background:rgba(0,0,0,0.5);",
+      "chooserModal": "position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); width:600px; background:#fff; border-radius:20px; box-shadow:0 2px 6px rgba(0,0,0,0.12); display:flex; flex-direction:column; gap:24px; overflow:hidden;",
+      "chooserHeader": "padding:24px 24px 0; display:flex; align-items:center; font:500 20px/1 Inter,'SF Pro',sans-serif; color:rgba(0,0,0,0.87); /* close icons/close-modal.svg 15x14 in 24 box */",
+      "chooserBody": "padding:0 24px 24px; display:flex; flex-direction:column; gap:24px;",
+      "chooserOption": "border:1px solid rgba(0,0,0,0.09); border-radius:12px; padding:16px; display:flex; align-items:center; gap:12px; cursor:pointer; /* chevron-right-24.svg at right */",
+      "chooserOptionTitle": "display:flex; gap:8px; align-items:center; font:510 18px/1.4 'SF Pro'; letter-spacing:-0.54px; color:rgba(0,0,0,0.87); /* 24px icon: currency-dollar-circle / clock-blue */",
+      "chooserOptionBody": "font:400 14px/1.4 'SF Pro'; color:rgba(0,0,0,0.65); margin-top:4px;",
+      "empty": "display:flex; flex-direction:column; align-items:center; gap:24px; padding-top:300px; /* relative to content top at 118px below page top */",
+      "emptyIcon": "width:48px; height:48px; /* icons/clock-48.svg */",
+      "emptyText": "width:360px; text-align:center; font:400 16px/1.4 'SF Pro'; color:rgba(0,0,0,0.4); margin-top:12px;",
+      "emptyCta": "width:240px; height:48px; border-radius:12px; background:#d024ff; color:#fff; font:590 16px/16px 'SF Pro'; letter-spacing:-0.24px;"
+    },
+    "copy": {
+      "title": "Auto-task",
+      "subtitle": "Pickoo checks prices across stores every hour.",
+      "filters": [
+        {
+          "label": "All",
+          "count": 8,
+          "selected": true
+        },
+        {
+          "label": "Target reached",
+          "count": 1
+        },
+        {
+          "label": "Watching",
+          "count": 5
+        },
+        {
+          "label": "Paused",
+          "count": 2
+        }
+      ],
+      "addButton": "Add Auto-Task",
+      "cardType": "Price tracker",
+      "notifyLabel": "Notify via:",
+      "notifyChannels": [
+        "Pickoo Web/App",
+        "Email"
+      ],
+      "adjust": "Adjust with Pickoo",
+      "pausedNotify": "Notifications paused · Target saved",
+      "chooser": {
+        "title": "Edit Description",
+        "titleSuggested": "Add Auto-Task",
+        "options": [
+          {
+            "icon": "assets/icons/currency-dollar-circle-24.svg",
+            "title": "Track price drops",
+            "body": "Set a target price and we’ll track it for you. Get notified as soon as it drops to your target."
+          },
+          {
+            "icon": "assets/icons/clock-blue.svg",
+            "title": "Create a custom task",
+            "body": "Describe anything you’d like done and when. We’ll run it for you automatically."
+          }
+        ]
+      },
+      "toast": "Added successfully",
+      "moreMenu": [
+        "Delete task"
+      ],
+      "empty": {
+        "text": "No auto-task yet",
+        "textAsDrawn": "No auto-task yetNo auto-task yetNo auto-task yetNo auto-task yet",
+        "cta": "Set Auto-task"
+      }
+    },
+    "tasks": [
+      {
+        "name": "HBADA E3 Air Office Chair",
+        "variant": "White / Teal · Size 40",
+        "store": "Amazon",
+        "storeLogo": "assets/img/logo-amazon-16.png",
+        "price": "$359.99",
+        "state": "watching",
+        "enabled": true,
+        "line": "Alert at $299 or less (17% below today).",
+        "img": "assets/img/t-hbada-e3.png"
+      },
+      {
+        "name": "B&O Beoplay H100 Headphones",
+        "variant": "White / Teal · Size 40",
+        "store": "Bang & Olufsen",
+        "storeLogo": "assets/img/logo-bang-olufsen-16.png",
+        "price": "$1,549.00",
+        "state": "watching",
+        "enabled": true,
+        "line": "Alert at $1,299 or less (16% below today).",
+        "img": "assets/img/t-beoplay-h100.png"
+      },
+      {
+        "name": "Polaroid Sun660 Instant Camera",
+        "variant": "White / Teal · Size 40",
+        "store": "Retrospekt",
+        "storeLogo": "assets/img/logo-retrospekt-16.png",
+        "price": "$179.00",
+        "state": "watching",
+        "enabled": true,
+        "line": "Alert at $149 or less (17% below today).",
+        "img": "assets/img/t-polaroid-sun660.png"
+      },
+      {
+        "name": "Blossom Side Table",
+        "variant": "White / Teal · Size 40",
+        "store": "Anthropologie",
+        "storeLogo": "assets/img/logo-anthropologie-16.png",
+        "price": "$199.00",
+        "state": "watching",
+        "enabled": true,
+        "line": "Alert at $169 or less (15% below today).",
+        "img": "assets/img/t-blossom-side-table.png"
+      },
+      {
+        "name": "Native Union Rise 3-in-1 Charger",
+        "variant": "White / Teal · Size 40",
+        "store": "Native Union",
+        "storeLogo": "assets/img/logo-native-union-16.png",
+        "price": "$119.99",
+        "state": "target-reached",
+        "enabled": true,
+        "line": "Target reached. $9.01 below your $129 target.",
+        "img": "assets/img/t-native-union-rise.png"
+      },
+      {
+        "name": "Rattan Nightstand Duo",
+        "variant": "White / Teal · Size 40",
+        "store": "Walmart",
+        "storeLogo": "assets/img/logo-walmart-16.png",
+        "price": "$84.99",
+        "state": "paused",
+        "enabled": false,
+        "line": "Paused. Your target is saved at $69.",
+        "img": "assets/img/t-rattan-nightstand.png"
+      },
+      {
+        "name": "Fellow Ode Gen 2 Grinder",
+        "variant": "White / Teal · Size 40",
+        "store": "Fellow",
+        "storeLogo": "assets/img/logo-fellow-16.png",
+        "price": "$345.00",
+        "state": "watching",
+        "enabled": true,
+        "line": "Alert at $299 or less (13% below today).",
+        "img": "assets/img/t-fellow-ode-gen2.png"
+      },
+      {
+        "name": "Fellow Aiden Coffee Maker",
+        "variant": "White / Teal · Size 40",
+        "store": "Fellow",
+        "storeLogo": "assets/img/logo-fellow-16.png",
+        "price": "$399.95",
+        "state": "paused",
+        "enabled": false,
+        "line": "Paused. Your target is saved at $349.",
+        "img": "assets/img/t-fellow-aiden.png"
+      }
+    ],
+    "icons": {
+      "dollar": "assets/icons/currency-dollar-circle.svg",
+      "toggleOn": "assets/icons/toggle-on.svg",
+      "toggleOff": "assets/icons/toggle-off.svg",
+      "more": "assets/icons/more-horizontal.svg",
+      "targetSparkle": "assets/icons/sparkle-target.svg",
+      "add": "assets/icons/add-white.svg",
+      "close": "assets/icons/close-modal.svg",
+      "chevron": "assets/icons/chevron-right-24.svg",
+      "clock": "assets/icons/clock-blue.svg",
+      "toast": "assets/icons/toast-success.svg",
+      "trash": "assets/icons/trash-03-red.svg",
+      "emptyClock": "assets/icons/clock-48.svg",
+      "dollar24": "assets/icons/currency-dollar-circle-24.svg"
+    }
+  },
+  "F_favoritesAccount": {
+    "_nodes": {
+      "favorites": "1519:67025",
+      "favoritesEmpty": "2446:324190",
+      "userMenu": "1519:68720",
+      "feedback": "1519:68628 (modal 1519:68655)",
+      "login": "717:30990 (modal 717:32362)",
+      "headerAvatarInitial": "717:30904",
+      "headerAvatarPhoto": "717:30953"
+    },
+    "_notes": [
+      "Favorites page is wider than other pages: 80px side padding on a 1760px content row, 5 columns (332.8px cards, gap 24px), title 'Favorites Products' 40px. Cards reuse the chat grid card; all 15 are placeholder 'A.P.C. Lou Canvas Tote…' $87.00/$115.00 except card 5 which shows the Polaroid image (no favorite-heart/remove control is drawn on cards).",
+      "On the filled Favorites frame the nav highlights 'Explore' (bold), not 'Favorites' - copy/paste slip; the empty Favorites frame correctly bolds 'Favorites'.",
+      "Logged-in header = logged-out header with the 'Log in' pill replaced by a 40px round avatar (gap 12px after the 'Add Pickoo to Chrome' pill). 717:30904 shows the fallback avatar: #f6f6f6 circle with initial 'C' in #d024ff 510 15.6px; 717:30953 shows the photo avatar (assets/img/avatar.png). Nothing else differs.",
+      "User menu (1519:68720) shows two states: default and row-hover (hover bg rgba(0,0,0,0.02) radius 8 on 'Web Permissions'; frame is named 'Language hover'). Language row uses a dark right chevron (submenu), others a light gray chevron. Logout is red #ee2c4a. Name is 'Xiaoqing Ma' with an edit pencil and a camera badge on the avatar.",
+      "Feedback modal 'From:' shows a real-looking employee email (xiaoqing.ma@shopee.com) - replaced with a placeholder in this JSON; Submit button is disabled (opacity .22) until text entered. Layer name 'Boss Email Alert'; mixes Inter/Roboto/SF Pro.",
+      "Login modal terms copy says \"Vicoo's Terms of Service\" (wrong brand) and footer 'Powered by Migoo'. Only Google sign-in is visible (Apple button hidden). Behind it the homepage shows a floating 'Ask Pickoo' composer (bottom center, 800px) - not in the other homepage frames.",
+      "Chat tab has a small unread dot in most frames (#d024ff, ~6px at top-right of 'Chat'); the empty Favorites header has the dot slot but it is empty."
+    ],
+    "css": {
+      "header": "position:fixed; top:0; left:0; right:0; height:80px; background:#fff; padding:20px; display:flex; align-items:center; justify-content:space-between; z-index:10;",
+      "logo": "display:flex; gap:8px; align-items:center; /* icons/pickoo-logo.svg 30px + 'Pickoo' font: 600 24px 'Shopee 2021', system-ui; color:#000 */",
+      "nav": "position:absolute; left:780px; top:20px; display:flex; gap:40px; /* or centered */",
+      "navTab": "padding:8px 0; font:400 16px/24px 'SF Pro'; color:#000;",
+      "navTabActive": "font-weight:700;",
+      "navChatDot": "width:6px; height:6px; border-radius:50%; background:#d024ff; margin:8px 0 0 2px; align-self:flex-start;",
+      "chromePill": "display:flex; align-items:center; gap:6px; padding:3.75px 16px 3.75px 10px; border-radius:1250px; border:1.25px solid rgba(0,0,0,0.09); background:#fff; font:400 16px/1.4 'SF Pro'; color:rgba(0,0,0,0.87); /* 32.5px circle (icons/chrome-ring.svg) with img/chrome.png 25px inside */",
+      "loginBtn": "height:40px; padding:9px 24px; border-radius:1250px; background:#d024ff; color:#fff; font:400 16px/1.4 'SF Pro';",
+      "avatar": "width:40px; height:40px; border-radius:50%; object-fit:cover;",
+      "avatarFallback": "width:40px; height:40px; border-radius:26.667px; background:#f6f6f6; color:#d024ff; font:510 15.556px/20px 'SF Pro'; display:flex; align-items:center; justify-content:center;",
+      "favPage": "padding:32px 80px 0; margin-top:80px;",
+      "favTitle": "font:590 40px/1.2 'SF Pro'; color:#000; height:48px;",
+      "favGrid": "display:grid; grid-template-columns:repeat(5,1fr); gap:24px; margin-top:40px;",
+      "favCard": "same as section C card (border 1.167px rgba(0,0,0,.09), radius 16, image 1:1 with #fff bg + rgba(0,0,0,.03) overlay, name 590 18px/1.4 two lines, benefit 400 16px #d024ff, price 590 20px, was 14px line-through, store tag)",
+      "favEmpty": "display:flex; flex-direction:column; align-items:center; gap:12px; padding-top:375px; /* icons/shopping-bag-02.svg 48px; text 400 16px/1.4 rgba(0,0,0,0.4) */",
+      "userMenu": "position:absolute; top:72px; right:20px; width:400px; background:#fff; border-radius:16px; padding:24px; box-shadow:0 0 10px rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:16px;",
+      "userMenuProfile": "height:96px; padding:0 16px; display:flex; align-items:center; gap:16px; /* avatar 64px round; camera badge 24px white circle bottom-right with shadow 0 0 5px rgba(0,0,0,.1) and icons/menu-camera.svg 15px; name 590 20px/28px rgba(0,0,0,.87) + icons/menu-edit-02.svg 20px */",
+      "userMenuItem": "height:64px; padding:0 16px; display:flex; align-items:center; gap:16px; border-radius:8px; font:510 16px/24px 'SF Pro'; color:rgba(0,0,0,0.87); /* 24px leading icon, trailing icons/menu-chevron-right.svg 16px in 20px box */",
+      "userMenuItemHover": "background:rgba(0,0,0,0.02);",
+      "userMenuLogout": "color:#ee2c4a;",
+      "userMenuDivider": "height:1px; background:rgba(0,0,0,0.09);",
+      "userMenuLegal": "display:flex; justify-content:center; gap:12px; font:400 13px/18px 'SF Pro'; color:rgba(0,0,0,0.65);",
+      "feedbackModal": "position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); width:600px; background:#fff; border-radius:20px; box-shadow:0 2px 3px rgba(0,0,0,0.12); /* overlay rgba(0,0,0,0.5) */",
+      "feedbackHeader": "padding:24px; display:flex; align-items:center; font:600 20px/1.4 Inter,'SF Pro',sans-serif; color:rgba(0,0,0,0.87); /* close icons/close-modal.svg */",
+      "feedbackBody": "padding:0 24px 24px; display:flex; flex-direction:column; gap:24px;",
+      "feedbackFrom": "display:flex; gap:8px; font:16px/1.4 'SF Pro'; letter-spacing:-0.48px; /* label 510 #081021, value 400 #888 */",
+      "feedbackTextarea": "height:240px; padding:16px; border:1px solid #e5e5e5; border-radius:12px; font:400 14px/18px 'SF Pro'; color:rgba(0,0,0,0.87); resize:vertical; /* placeholder rgba(0,0,0,0.4); resize handle icons/resize-handle.svg */",
+      "feedbackCounter": "text-align:right; font:400 14px/18px Roboto; color:#999; margin-top:4px;",
+      "feedbackSectionTitle": "font:510 16px/1.4 'SF Pro'; letter-spacing:-0.48px; color:#081021;",
+      "feedbackSectionSub": "font:400 14px/1.4 'SF Pro'; letter-spacing:-0.42px; color:rgba(0,0,0,0.4);",
+      "feedbackAddTile": "width:90px; height:90px; border:1px solid #e5e5e5; border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; font:400 14px/22px 'SF Pro'; color:#000; /* icons/add-32.svg 32px */",
+      "feedbackLegal": "font:400 12px/1.4 Inter,'SF Pro',sans-serif; letter-spacing:-0.18px; color:rgba(0,0,0,0.87); /* 'Privacy Policy' color:#007aff */",
+      "feedbackSubmit": "height:48px; padding:12px 24px; border-radius:12px; background:#d024ff; color:#fff; font:500 17.5px/20px Roboto,'SF Pro',sans-serif;",
+      "feedbackSubmitDisabled": "opacity:0.22;",
+      "loginModal": "position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); width:487px; background:#fff; border-radius:16px; box-shadow:0 0 16px rgba(0,0,0,0.06); padding:72px 36px 24px; display:flex; flex-direction:column; align-items:center; gap:32px; /* overlay rgba(0,0,0,0.5); close icons/login-close.svg 20px at top:22 right:20 */",
+      "loginLogo": "width:92px; height:92px; /* icons/login-logo.svg */",
+      "loginTitle": "font:700 32px/normal 'SF Pro'; color:#2e2d48; text-align:center; margin-top:24px;",
+      "loginGoogleBtn": "width:100%; height:52px; border:1px solid #b6b6bf; border-radius:10px; background:#fff; display:flex; align-items:center; justify-content:center; gap:8px; font:590 16px/20px 'SF Pro'; color:#2e2d48; /* img/google-g.png 24px */",
+      "loginTerms": "font:400 12px/16px 'SF Pro'; color:#8a8a8f; /* links 590 #2e2d48 underline */",
+      "loginPowered": "font:400 12px/20px 'SF Pro'; color:#8a8a8f; text-align:center;",
+      "homeAskComposer": "position:fixed; left:560px; bottom:20px; width:800px; background:rgba(255,255,255,0.9); border-radius:24px; box-shadow:0 0 40px rgba(0,0,0,0.1); padding:16px; display:flex; flex-direction:column; gap:12px; /* row1: icons/pickoo-agent-logo.svg 24px + 'Ask Pickoo' 700 italic 14px; row2: placeholder 16px rgba(0,0,0,.4) + plus + send(opacity .5) */"
+    },
+    "copy": {
+      "nav": [
+        "Explore",
+        "Chat",
+        "Auto-task",
+        "Favorites"
+      ],
+      "chromePill": "Add Pickoo to Chrome",
+      "login": "Log in",
+      "favorites": {
+        "title": "Favorites Products",
+        "empty": "No favorites yet"
+      },
+      "userMenu": {
+        "name": "Xiaoqing Ma",
+        "items": [
+          {
+            "label": "Web Permissions",
+            "icon": "assets/icons/menu-lock-01.svg"
+          },
+          {
+            "label": "Language",
+            "icon": "assets/icons/menu-globe-outline.svg",
+            "iconOverlay": "assets/icons/menu-globe-meridian.svg",
+            "chevron": "assets/icons/menu-chevron-dark.svg",
+            "chevronCss": "transform:rotate(90deg); width:16px; height:16px;",
+            "iconNote": "globe = menu-globe-outline.svg (20px at left:2 top:2.4) + menu-globe-meridian.svg (6.5x16.3 centered, top:4.1) stacked in a 24px box"
+          },
+          {
+            "label": "Feedback & Support",
+            "icon": "assets/icons/menu-feedback.svg"
+          },
+          {
+            "label": "Logout",
+            "icon": "assets/icons/menu-logout.svg",
+            "danger": true
+          }
+        ],
+        "legal": [
+          "Terms of Service",
+          "·",
+          "Privacy"
+        ]
+      },
+      "feedback": {
+        "title": "Feedback & Support",
+        "fromLabel": "From:",
+        "fromValue": "you@example.com",
+        "fromValueNote": "design shows a real employee email; use the signed-in user's email",
+        "placeholder": "Please fill out your feedback.",
+        "counter": "0/5000",
+        "attachmentsTitle": "Attachments",
+        "attachmentsSub": "Include screenshot in report",
+        "addTile": "Add",
+        "legalHtml": "We may use this information to investigate issues and improve our services, in accordance with our <a>Privacy Policy</a>. We may contact you for information or updates.",
+        "submit": "Submit"
+      },
+      "loginModal": {
+        "title": "Welcome to Pickoo",
+        "google": "Continue with Google",
+        "termsHtml": "By logging in, you agree to Vicoo's <a>Terms of Service</a> & <a>Privacy Policy</a>",
+        "termsSuggested": "By logging in, you agree to Pickoo's Terms of Service & Privacy Policy",
+        "powered": "Powered by Migoo"
+      },
+      "homeAskComposer": {
+        "label": "Ask Pickoo",
+        "placeholder": "Find a carry-on under $50"
+      }
+    },
+    "favorites": {
+      "placeholderCard": {
+        "name": "A.P.C. Lou Canvas Tote",
+        "benefit": "This classic costs less",
+        "price": "$87.00",
+        "was": "$115.00",
+        "store": "From Walmart",
+        "img": "assets/img/chat-apc-tote.png"
+      },
+      "count": 15,
+      "altImageCard5": "assets/img/t-polaroid-sun660.png"
+    },
+    "assets": {
+      "avatar": "assets/img/avatar.png",
+      "googleIcon": "assets/img/google-g.png",
+      "chromeIcon": "assets/img/chrome.png",
+      "chromeRing": "assets/icons/chrome-ring.svg",
+      "loginLogo": "assets/icons/login-logo.svg",
+      "loginClose": "assets/icons/login-close.svg",
+      "headerLogo": "assets/icons/pickoo-logo.svg",
+      "menuIcons": [
+        "assets/icons/menu-camera.svg",
+        "assets/icons/menu-edit-02.svg",
+        "assets/icons/menu-lock-01.svg",
+        "assets/icons/menu-globe-outline.svg",
+        "assets/icons/menu-globe-meridian.svg",
+        "assets/icons/menu-feedback.svg",
+        "assets/icons/menu-logout.svg",
+        "assets/icons/menu-chevron-right.svg",
+        "assets/icons/menu-chevron-dark.svg"
+      ],
+      "feedbackIcons": [
+        "assets/icons/close-modal.svg",
+        "assets/icons/resize-handle.svg",
+        "assets/icons/add-32.svg"
+      ],
+      "emptyFavorites": "assets/icons/shopping-bag-02.svg"
+    }
+  }
+}
