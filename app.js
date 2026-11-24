@@ -191,6 +191,42 @@
         h("button", { class: "hd-login", text: "Log in", onclick: Login.open }),
       );
     hd.appendChild(right);
+    renderTabbar();
+  }
+  // 手机底部导航（≤760px 时显示，顶部文字 Tab 隐藏）
+  var TAB_ICONS = {
+    explore:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>',
+    chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18.5V7a2.5 2.5 0 0 1 2.5-2.5h9A2.5 2.5 0 0 1 19 7v6.5a2.5 2.5 0 0 1-2.5 2.5H9z"/></svg>',
+    "auto-task":
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    favorites:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 20s-7.5-4.4-7.5-10A4.2 4.2 0 0 1 12 7.5 4.2 4.2 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10Z"/></svg>',
+  };
+  function renderTabbar() {
+    var bar = $("#tabbar");
+    if (!bar) {
+      bar = h("nav", { id: "tabbar", class: "tabbar", "aria-label": "Main" });
+      document.body.appendChild(bar);
+    }
+    bar.textContent = "";
+    [
+      ["explore", "Explore"],
+      ["chat", "Chat"],
+      ["auto-task", "Auto-task"],
+      ["favorites", "Favorites"],
+    ].forEach(function (t) {
+      var b = h("button", {
+        class: "tabbar-item" + (route() === t[0] ? " is-active" : ""),
+        html: TAB_ICONS[t[0]] + "<span>" + t[1] + "</span>",
+        onclick: function () {
+          if (t[0] === "chat") Agent.openPage();
+          else go(t[0]);
+        },
+      });
+      if (t[0] === "chat" && Agent.unread) b.appendChild(h("i", { class: "dot" }));
+      bar.appendChild(b);
+    });
   }
   function avatarSrc() {
     return (
@@ -465,6 +501,15 @@
       caps.appendChild(b);
     });
     hero.appendChild(caps);
+    // 入口卡里的商品场景按 357×168 的设计尺寸绝对定位；窄屏时整体按卡片实际宽度等比缩放（--s）
+    function fitCaps() {
+      var first = caps.firstChild;
+      if (!first) return;
+      var w = first.getBoundingClientRect().width;
+      if (w) caps.style.setProperty("--s", Math.min(1, w / 357).toFixed(4));
+    }
+    if (window.ResizeObserver) new ResizeObserver(fitCaps).observe(caps);
+    requestAnimationFrame(fitCaps);
     view.appendChild(hero);
 
     if (H.topDeals && H.topDeals.length) {

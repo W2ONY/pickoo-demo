@@ -3730,3 +3730,848 @@ img {
 .pdp-foot .buy-row {
   padding-right: 4px;
 }
+
+/* =====================================================================
+ * 自适应：桌面 1920 设计稿 → 笔记本 / 平板（≤1200）→ 手机（≤760）
+ * ===================================================================== */
+/* 能力入口：场景层按 357×168 设计尺寸绝对定位，整体按卡宽等比缩放（app.js 写 --s） */
+.caps {
+  --s: 1;
+  width: 100%;
+  max-width: 1500px;
+  grid-template-columns: repeat(4, minmax(0, 357px));
+  justify-content: center;
+}
+.cap {
+  width: 100%;
+  height: calc(237px * var(--s));
+}
+.cap-oval {
+  top: calc(107.83px * var(--s));
+  height: calc(130px * var(--s));
+  border-radius: calc(68px * var(--s));
+}
+.cap-scene {
+  width: 357px;
+  transform: scale(var(--s));
+  transform-origin: 0 0;
+}
+.cap:hover .cap-scene {
+  transform: translateY(-6px) scale(calc(var(--s) * 1.025));
+}
+.cap-label {
+  top: calc(181.83px * var(--s));
+  gap: calc(12px * var(--s) + 2px);
+  font-size: max(15px, calc(26px * var(--s)));
+  line-height: 1.25;
+}
+.cap-arrow {
+  width: max(22px, calc(32px * var(--s)));
+  height: max(22px, calc(32px * var(--s)));
+}
+.cap-arrow img {
+  width: max(14px, calc(20px * var(--s)));
+  height: max(14px, calc(20px * var(--s)));
+}
+.tabbar {
+  display: none;
+}
+
+/* ---------- 笔记本 / 平板 ---------- */
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: clamp(40px, 6.4vw, 80px);
+  }
+  .hero-chips {
+    margin-top: 28px;
+  }
+  .caps {
+    margin-top: 44px;
+  }
+  .sec-title {
+    font-size: 32px;
+  }
+  .agent {
+    left: max(20px, calc(100% - 660px));
+  }
+}
+@media (max-width: 1000px) {
+  .caps {
+    grid-template-columns: repeat(2, minmax(0, 357px));
+    row-gap: 28px;
+  }
+  /* 能力弹窗：左侧插图栏收起，只留表单 */
+  .cap-modal {
+    grid-template-columns: minmax(0, 1fr);
+    width: 640px;
+  }
+  .cap-modal .cap-left {
+    display: none;
+  }
+  .cap-right {
+    border-radius: 24px;
+  }
+  .pdp.is-full .pdp-scroll {
+    gap: 40px;
+    padding: 64px 32px 180px;
+  }
+  .pdp.is-full .pdp-left {
+    width: 46%;
+  }
+  .pdp.is-full .pdp-gal {
+    width: auto;
+    height: auto;
+    flex: 1;
+    aspect-ratio: 1;
+  }
+  .pdp.is-full .pdp-foot {
+    padding: 20px 32px 24px calc(46% + 72px);
+  }
+}
+
+/* ---------- 手机 ---------- */
+@media (max-width: 760px) {
+  :root {
+    --pad: 16px;
+    --tabbar: calc(60px + env(safe-area-inset-bottom));
+  }
+  body {
+    overflow-x: hidden;
+  }
+  /* 顶栏：Logo + 登录 / 头像；导航挪到底部 Tab 栏 */
+  .hd {
+    height: 56px;
+    padding: 10px 16px;
+  }
+  .hd-logo {
+    font-size: 20px;
+  }
+  .hd-logo span {
+    display: inline;
+  }
+  .hd-logo img {
+    width: 26px;
+    height: 26px;
+  }
+  .hd-tabs,
+  .hd-chrome {
+    display: none !important;
+  }
+  .hd-login {
+    height: 34px;
+    padding: 0 18px;
+    font-size: 15px;
+  }
+  .hd-avatar {
+    width: 34px;
+    height: 34px;
+  }
+  .tabbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 45;
+    display: flex;
+    height: var(--tabbar);
+    padding-bottom: env(safe-area-inset-bottom);
+    border-top: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.96);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+  .tabbar-item {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .tabbar-item svg {
+    width: 24px;
+    height: 24px;
+  }
+  .tabbar-item.is-active {
+    font-weight: 600;
+    color: var(--brand);
+  }
+  .tabbar-item .dot {
+    position: absolute;
+    top: 9px;
+    left: calc(50% + 8px);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--brand);
+  }
+  #toast-root {
+    top: 68px;
+    width: calc(100vw - 32px);
+    display: flex;
+    justify-content: center;
+  }
+  .toast {
+    padding: 12px 18px;
+  }
+
+  /* 首屏 */
+  .hero {
+    padding: 20px 16px 36px;
+  }
+  .hero-title {
+    font-size: clamp(32px, 9.6vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.3px;
+  }
+  .hero-chips {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-self: stretch;
+    gap: 8px;
+    max-width: none;
+    margin: 20px -16px 0;
+    padding: 0 16px 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .hero-chips::-webkit-scrollbar {
+    display: none;
+  }
+  .q-chip {
+    flex: none;
+    padding: 9px 14px;
+    font-size: 14px;
+  }
+  .q-chip img {
+    width: 18px;
+    height: 18px;
+  }
+  .caps {
+    gap: 18px 12px;
+    margin-top: 28px;
+  }
+  .cap-label {
+    font-size: 14px;
+    gap: 6px;
+  }
+
+  /* 分区 */
+  .sec {
+    margin-bottom: 44px;
+  }
+  .sec-head {
+    margin-bottom: 16px;
+  }
+  .sec-title {
+    font-size: 24px;
+  }
+  .sec-sub {
+    font-size: 14px;
+  }
+  .rail-track {
+    gap: 12px;
+    padding-bottom: 4px;
+  }
+  .rail-btn {
+    display: none;
+  }
+  .top-card {
+    width: 168px;
+  }
+  .pcard {
+    gap: 12px;
+    padding-bottom: 14px;
+    border-radius: 14px;
+  }
+  .pcard-img {
+    border-radius: 14px 14px 0 0;
+  }
+  .pcard-body {
+    gap: 5px;
+    padding: 0 10px;
+  }
+  .pcard-name {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+  .benefit {
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .benefit img {
+    width: 13px;
+    height: 18px;
+  }
+  .price b {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .price s {
+    font-size: 12px;
+  }
+  .from {
+    font-size: 11px;
+  }
+  .pcard-badge {
+    top: 8px;
+    left: 8px;
+    padding: 3px 6px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .pcard-task {
+    top: 8px;
+    right: 8px;
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+  .pcard-task img {
+    width: 13px;
+    height: 13px;
+  }
+  .wl-card {
+    width: 272px;
+    height: 340px;
+    border-radius: 20px;
+  }
+  .wl-pill {
+    top: 14px;
+    left: 14px;
+    height: 30px;
+    padding: 0 12px;
+    font-size: 11px;
+  }
+  .wl-text,
+  .wl-text.is-b {
+    top: 66px;
+    left: 16px;
+    right: 16px;
+  }
+  .wl-title,
+  .wl-text.is-b .wl-title {
+    font-size: 26px;
+    line-height: 1.15;
+  }
+  .wl-count {
+    margin-top: 8px;
+    font-size: 13px;
+  }
+  .wl-price {
+    margin-top: 8px;
+    font-size: 20px;
+  }
+  .wl-was {
+    font-size: 13px;
+  }
+  .wl-thumbs {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+  }
+  .wl-thumbs span {
+    width: 76px;
+    height: 76px;
+    border-radius: 12px;
+  }
+  .pills {
+    gap: 8px;
+    margin: 0 -16px 18px;
+    padding: 0 16px;
+  }
+  .pill {
+    height: 42px;
+    padding: 0 14px;
+    gap: 8px;
+    font-size: 15px;
+  }
+  .pill:has(.pill-ico) {
+    padding: 4px 14px 4px 4px;
+  }
+  .pill-ico {
+    width: 32px;
+    height: 32px;
+  }
+  .pill-ico img.is-glyph {
+    width: 18px;
+    height: 18px;
+  }
+  .pills-sep {
+    height: 24px;
+  }
+  .deal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 10px;
+  }
+  #view {
+    padding-bottom: calc(var(--tabbar) + 90px);
+  }
+
+  /* 底部输入框：贴在 Tab 栏上方 */
+  .dock {
+    bottom: calc(var(--tabbar) + 10px);
+    width: calc(100vw - 24px);
+  }
+  .dock .composer {
+    gap: 8px;
+    padding: 8px 8px 8px 16px;
+    border-radius: 999px;
+  }
+  .dock .composer-input {
+    font-size: 15px;
+  }
+
+  /* 会话：手机上浮窗 / 全屏都是满屏页面，盖住顶栏与 Tab 栏 */
+  .agent,
+  .agent.is-full {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .agent-head {
+    height: 56px;
+    margin: 0;
+    padding: 0 12px 0 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .agent.is-full .agent-head .ttl {
+    visibility: visible;
+  }
+  /* 手机上浮窗和全屏一样大，放大 / 缩小按钮没有意义 */
+  .agent-head .agent-ic:nth-last-child(2) {
+    display: none;
+  }
+  .agent-scroll {
+    margin-top: 0;
+    padding: 16px 12px calc(130px + env(safe-area-inset-bottom));
+  }
+  .agent.is-full .agent-scroll,
+  .chat-page .agent-scroll {
+    padding-top: 16px;
+    padding-bottom: calc(130px + env(safe-area-inset-bottom));
+  }
+  .agent-foot,
+  .agent.is-full .agent-foot {
+    left: 0;
+    right: 0;
+    width: auto;
+    padding: 18px 12px calc(12px + env(safe-area-inset-bottom));
+    transform: none;
+  }
+  .agent-foot .composer {
+    min-height: 0;
+    gap: 6px;
+    padding: 12px 10px 10px 14px;
+  }
+  .msg-user {
+    max-width: 88%;
+    font-size: 15px;
+  }
+  .msg-ai {
+    padding: 12px 14px;
+    font-size: 15px;
+    line-height: 22px;
+  }
+  .msg-ai .sub {
+    font-size: 15px;
+  }
+  .chat-grid,
+  .agent.is-full .chat-grid,
+  .chat-page .chat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .lcard {
+    padding: 10px;
+  }
+  .lcard-img {
+    width: 76px;
+    height: 76px;
+  }
+  .lcard.is-big {
+    padding: 12px;
+  }
+  .lcard.is-big .lcard-img {
+    width: 96px;
+    height: 96px;
+  }
+  .lcard-name {
+    font-size: 15px;
+  }
+  .lcard .benefit {
+    font-size: 13px;
+  }
+  .lcard .price b {
+    font-size: 16px;
+  }
+  .tform {
+    padding: 14px;
+  }
+  .tform-chips {
+    gap: 6px;
+  }
+  .tform-chips button {
+    padding: 4px 6px;
+  }
+
+  /* PDP：抽屉 / 全屏在手机上都是满屏页面 */
+  .pdp,
+  .pdp.is-full {
+    top: 0;
+    left: 0;
+    right: 0 !important;
+    bottom: 0;
+    width: auto;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .pdp-tools {
+    top: 14px;
+    left: 14px;
+    right: 14px;
+  }
+  .round-btn {
+    width: 38px;
+    height: 38px;
+  }
+  .pdp-count {
+    right: 14px;
+    bottom: 14px;
+    font-size: 13px;
+    line-height: 20px;
+  }
+  .pdp-variant {
+    bottom: 14px;
+    font-size: 13px;
+    line-height: 20px;
+  }
+  .pdp-body {
+    gap: 16px;
+    padding: 18px 16px 0;
+  }
+  .pdp-scroll {
+    padding-bottom: calc(160px + env(safe-area-inset-bottom));
+  }
+  .pdp.is-full .pdp-scroll {
+    display: block;
+    padding: 56px 0 calc(190px + env(safe-area-inset-bottom));
+  }
+  .pdp.is-full .pdp-left {
+    position: static;
+    width: auto;
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  .pdp.is-full .pdp-gal {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+  .pdp-thumbs {
+    flex-direction: row;
+    gap: 8px;
+    padding: 0 16px;
+    overflow-x: auto;
+  }
+  .pdp-thumbs button {
+    flex: none;
+    width: 56px;
+    height: 56px;
+  }
+  .pdp.is-full .pdp-body {
+    padding: 18px 16px 0;
+  }
+  .pdp.is-full .pdp-head .pdp-title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .pdp.is-full .pdp-price {
+    font-size: 26px;
+    line-height: 34px;
+  }
+  .pdp-top {
+    top: 10px;
+    right: 10px;
+    padding: 2px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .pdp-foot,
+  .pdp.is-full .pdp-foot {
+    left: 0;
+    right: 0;
+    width: auto;
+    gap: 10px;
+    padding: 20px 16px calc(14px + env(safe-area-inset-bottom));
+    transform: none;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff 28%);
+  }
+  .quick {
+    margin: 0 -16px;
+    padding: 6px 16px;
+  }
+  .quick button {
+    font-size: 13px;
+  }
+  .buy-row {
+    gap: 14px;
+  }
+  .buy {
+    height: 50px;
+    font-size: 16px;
+  }
+  .ask-p {
+    font-size: 12px;
+  }
+  .ask-p img {
+    width: 26px;
+    height: 26px;
+  }
+  .cmp {
+    padding: 14px;
+  }
+  .cmp-h {
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .cmp-h b img {
+    vertical-align: -2px;
+  }
+  .cmp-row {
+    grid-template-columns: 62px minmax(0, 1fr) 62px;
+    gap: 8px;
+    font-size: 13px;
+  }
+  .cmp-notes {
+    font-size: 14px;
+    line-height: 21px;
+  }
+  .o-chip {
+    min-width: 0;
+    height: 36px;
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  /* 弹窗：从底部弹起的整屏面板 */
+  .mask {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .modal {
+    width: 100% !important;
+    max-width: none;
+    max-height: calc(100% - 24px);
+    border-radius: 20px 20px 0 0;
+    animation: sheet-up 0.28s cubic-bezier(0.22, 0.8, 0.24, 1);
+  }
+  @keyframes sheet-up {
+    from {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+  }
+  .cap-modal {
+    height: calc(100% - 24px);
+  }
+  .cap-right {
+    gap: 16px;
+    padding: 18px 16px calc(16px + env(safe-area-inset-bottom));
+    border-radius: 20px 20px 0 0;
+  }
+  .cap-right .modal-head {
+    font-size: 20px;
+  }
+  .viewed {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .vtile-img {
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .vtile-t {
+    font-size: 12px;
+    line-height: 15px;
+    height: 30px;
+  }
+  .vtile b {
+    font-size: 14px;
+  }
+  .chips {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .chip {
+    height: 46px;
+    font-size: 14px;
+  }
+  .chip img {
+    width: 36px;
+    height: 36px;
+  }
+  .mini-chips {
+    gap: 8px;
+  }
+  .mini-chip {
+    padding: 4px 14px;
+  }
+  .plain-modal {
+    padding: 20px 16px calc(20px + env(safe-area-inset-bottom));
+  }
+  .set-modal {
+    height: auto;
+    max-height: calc(100% - 24px);
+    padding: 18px 16px calc(20px + env(safe-area-inset-bottom));
+  }
+  .set-modal .modal-head {
+    margin-bottom: 18px;
+  }
+  .login {
+    padding: 48px 20px calc(24px + env(safe-area-inset-bottom));
+    gap: 24px;
+  }
+  .login > img {
+    width: 72px;
+    height: 72px;
+  }
+  .login h2 {
+    font-size: 26px;
+  }
+  .fb-text {
+    height: 160px;
+  }
+  .fb-foot {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .umenu {
+    top: 62px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    padding: 16px;
+  }
+  .umenu-me {
+    height: 80px;
+    padding: 0 8px;
+  }
+  .umenu-item {
+    height: 56px;
+    padding: 0 8px;
+  }
+
+  /* Auto-task / Favorites */
+  .page,
+  .page.at-page,
+  .page-wide {
+    padding: 20px 16px calc(var(--tabbar) + 100px);
+  }
+  .at-page .page-title {
+    font-size: 24px;
+  }
+  .at-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0;
+  }
+  .at-bar .sp {
+    display: none;
+  }
+  .f-chip {
+    height: 34px;
+    padding: 0 12px;
+    font-size: 13px;
+  }
+  .btn-add {
+    width: 100%;
+    justify-content: center;
+    height: 40px;
+  }
+  .at-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .task {
+    padding: 14px;
+  }
+  .task-p .lcard-img {
+    width: 80px;
+    height: 80px;
+  }
+  .task-p .pr {
+    font-size: 18px;
+  }
+  .task-f {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .task-f .sp {
+    flex-basis: 100%;
+    height: 0;
+  }
+  .task-f .btn-line {
+    flex: 1;
+  }
+  .fav-title {
+    font-size: 26px;
+  }
+  .fav-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 10px;
+    margin-top: 20px;
+  }
+  .empty {
+    padding-top: 22vh;
+  }
+}
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 30px;
+  }
+  .viewed {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+/* 网格里的任务卡不被长商品名撑宽（名称单行省略） */
+.task,
+.task-p {
+  min-width: 0;
+}
+/* 抽屉 / 浮窗滑入滑出时不让页面出现横向滚动 */
+html,
+body {
+  overflow-x: clip;
+}
+/* 平板：问句胶囊改为单行横滑（和手机一致） */
+@media (max-width: 1000px) {
+  .hero-chips {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-self: stretch;
+    max-width: none;
+    margin-left: calc(var(--pad) * -1);
+    margin-right: calc(var(--pad) * -1);
+    padding: 0 var(--pad) 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .hero-chips::-webkit-scrollbar {
+    display: none;
+  }
+  .q-chip {
+    flex: none;
+  }
+}
